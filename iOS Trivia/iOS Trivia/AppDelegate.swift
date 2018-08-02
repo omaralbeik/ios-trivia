@@ -15,14 +15,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-		window = UIWindow()
-		window?.rootViewController = UIViewController()
-		window?.makeKeyAndVisible()
-
-		FirebaseApp.configure()
-
+		setupWindow()
+		setupFirebase()
 		return true
+	}
+
+}
+
+// MARK: - Setup
+private extension AppDelegate {
+
+	func setupWindow() {
+		window = UIWindow()
+		window?.rootViewController = WelcomeViewController()
+		window?.makeKeyAndVisible()
+	}
+
+	func setupFirebase() {
+		FirebaseApp.configure()
+		Database.database().isPersistenceEnabled = true
 	}
 
 }

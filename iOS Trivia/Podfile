@@ -3,6 +3,11 @@ platform :ios, '9.0'
 target 'iOS Trivia' do
   use_frameworks!
 
+  # Autolayout
+  pod 'SnapKit'
+
+  # Firebase
   pod 'Firebase/Core'
+  pod 'Firebase/Database'
 
 end
