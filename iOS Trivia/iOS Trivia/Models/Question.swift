@@ -8,9 +8,11 @@
 
 import Foundation
 
-struct Question: Codable {
-	var id: Int
-	var text: String
-	var points: Int
-	var answers: [Answer]
+public struct Question: Codable {
+
+	public var id: String
+	public var text: String
+	public var points: Int
+	public var answers: [Answer]
+
 }

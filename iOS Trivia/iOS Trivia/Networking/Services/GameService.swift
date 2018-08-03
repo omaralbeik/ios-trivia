@@ -9,8 +9,11 @@
 import Foundation
 import Moya
 
+/// GameService
+///
+/// - question: get question.
 public enum GameService {
-	case question(id: Int, token: String)
+	case question(id: Int)
 }
 
 extension GameService: TargetType {
@@ -21,7 +24,7 @@ extension GameService: TargetType {
 
 	public var path: String {
 		switch self {
-		case .question(let id, token: _):
+		case .question(let id):
 			return "questions/q\(id).json"
 		}
 	}
@@ -35,22 +38,12 @@ extension GameService: TargetType {
 
 	public var task: Task {
 		switch self {
-		case .question(id: _, let token):
-			let parameters = ["auth": token]
-			return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+		case .question:
+			return .requestPlain
 		}
 	}
 
 	public var headers: [String: String]? { return nil }
 	public var sampleData: Data { return "".utf8Encoded }
-
-}
-
-// MARK: - Mapping
-extension Response {
-
-	var question: Question? {
-		return try? map(Question.self, using: DefaultDecoder())
-	}
 
 }

@@ -41,11 +41,12 @@ private extension AppDelegate {
 extension AppDelegate {
 
 	func showWelcomeViewController(animated: Bool = true) {
-		window?.switchRootViewController(to: WelcomeViewController(), animated: animated, options: .transitionFlipFromRight)
+		let viewController = UINavigationController(rootViewController: WelcomeViewController())
+		window?.switchRootViewController(to: viewController, animated: animated, options: .transitionFlipFromRight)
 	}
 
 	func showAuthViewController(animated: Bool = true) {
-		window?.switchRootViewController(to: AuthViewController(), animated: animated, options: .transitionFlipFromRight)
+		window?.switchRootViewController(to: AuthViewController(), animated: animated, options: .transitionFlipFromLeft)
 	}
 
 }

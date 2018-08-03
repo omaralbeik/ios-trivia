@@ -12,7 +12,7 @@ final class GameHeaderView: LayoutableView {
 
 	private lazy var questionTitleLabel: UILabel = {
 		let label = UILabel()
-		label.font = .systemFont(ofSize: 12, weight: .light)
+		label.font = .systemFont(ofSize: 14, weight: .light)
 		label.text = L10n.Game.Header.Titles.currentQuestion
 		label.textAlignment = .center
 		return label
@@ -20,7 +20,7 @@ final class GameHeaderView: LayoutableView {
 
 	private lazy var wildCardTitleLabel: UILabel = {
 		let label = UILabel()
-		label.font = .systemFont(ofSize: 12, weight: .light)
+		label.font = .systemFont(ofSize: 14, weight: .light)
 		label.text = L10n.Game.Header.Titles.availableWildCards
 		label.textAlignment = .center
 		return label
@@ -36,16 +36,16 @@ final class GameHeaderView: LayoutableView {
 
 	lazy var questionLabel: UILabel = {
 		let label = UILabel()
-		label.font = .systemFont(ofSize: 18, weight: .bold)
-		label.text = "-"
+		label.font = .systemFont(ofSize: 30, weight: .bold)
+		label.text = " "
 		label.textAlignment = .center
 		return label
 	}()
 
 	lazy var wildCardLabel: UILabel = {
 		let label = UILabel()
-		label.font = .systemFont(ofSize: 18, weight: .bold)
-		label.text = "-"
+		label.font = .systemFont(ofSize: 30, weight: .bold)
+		label.text = " "
 		label.textAlignment = .center
 		return label
 	}()
@@ -58,8 +58,28 @@ final class GameHeaderView: LayoutableView {
 		return view
 	}()
 
+	override var backgroundColor: UIColor? {
+		didSet {
+			questionTitleLabel.backgroundColor = backgroundColor
+			wildCardTitleLabel.backgroundColor = backgroundColor
+			questionLabel.backgroundColor = backgroundColor
+			wildCardLabel.backgroundColor = backgroundColor
+		}
+	}
+
+	override var tintColor: UIColor! {
+		didSet {
+			questionTitleLabel.textColor = tintColor
+			wildCardTitleLabel.textColor = tintColor
+			questionLabel.textColor = tintColor
+			wildCardLabel.textColor = tintColor
+
+		}
+	}
+
 	override func setupViews() {
-		super.setupViews()
+		backgroundColor = Color.lightOrange
+		tintColor = Color.white
 
 		addSubview(titleLabelsStackView)
 		addSubview(labelsStackView)
@@ -74,7 +94,7 @@ final class GameHeaderView: LayoutableView {
 		labelsStackView.snp.makeConstraints { make in
 			make.top.equalTo(titleLabelsStackView.snp.bottom)
 			make.leading.trailing.equalToSuperview()
-			make.bottom.equalToSuperview()
+			make.bottom.equalToSuperview().inset(preferredPadding)
 		}
 	}
 

@@ -11,8 +11,8 @@ import UIKit
 final class WelcomeView: LayoutableView {
 
 	lazy var logoImageView: UIImageView = {
-		let view = UIImageView(image: #imageLiteral(resourceName: "welcome_logo"))
-		view.tintColor = .red
+		let view = UIImageView(image: #imageLiteral(resourceName: "logo"))
+		view.tintColor = .white
 		return view
 	}()
 
@@ -24,22 +24,19 @@ final class WelcomeView: LayoutableView {
 		return label
 	}()
 
-	lazy var startButton: UIButton = {
-		let button = UIButton(type: .system)
-		button.setTitle(L10n.Welcome.start, for: .normal)
-		return button
+	lazy var startButton: Button = {
+		return Button(title: L10n.Welcome.startGame)
 	}()
 
 	override var backgroundColor: UIColor? {
 		didSet {
 			logoImageView.backgroundColor = backgroundColor
 			titleLabel.backgroundColor = backgroundColor
-			startButton.backgroundColor = backgroundColor
 		}
 	}
 
 	override func setupViews() {
-		super.setupViews()
+		backgroundColor = Color.lightOrange
 
 		addSubview(logoImageView)
 		addSubview(titleLabel)
@@ -48,9 +45,9 @@ final class WelcomeView: LayoutableView {
 
 	override func setupLayout() {
 		logoImageView.snp.makeConstraints { make in
-			make.width.height.equalTo(preferredPadding * 13)
+			make.width.equalTo(preferredPadding * 13)
 			make.centerX.equalToSuperview()
-			make.centerY.equalToSuperview().offset(-preferredPadding * 3)
+			make.centerY.equalToSuperview().offset(-preferredPadding * 4)
 		}
 
 		titleLabel.snp.makeConstraints { make in
@@ -59,8 +56,9 @@ final class WelcomeView: LayoutableView {
 		}
 
 		startButton.snp.makeConstraints { make in
+			make.height.equalTo(preferredPadding * 2)
 			make.top.equalTo(titleLabel.snp.bottom).offset(preferredPadding * 1.5)
-			make.leading.trailing.equalToSuperview().inset(preferredPadding)
+			make.centerX.equalToSuperview()
 		}
 	}
 

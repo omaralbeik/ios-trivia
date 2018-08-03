@@ -8,6 +8,14 @@ import Foundation
 // swiftlint:disable explicit_type_interface identifier_name line_length nesting type_body_length type_name
 internal enum L10n {
 
+	internal enum Api {
+
+		internal enum Errors {
+			/// Unknown Server Error
+			internal static let serverError = L10n.tr("Localizable", "api.errors.server_error")
+		}
+	}
+
 	internal enum Auth {
 		/// Email Address
 		internal static let emailAddress = L10n.tr("Localizable", "auth.email_address")
@@ -56,8 +64,10 @@ internal enum L10n {
 	}
 
 	internal enum Welcome {
-		/// Start
-		internal static let start = L10n.tr("Localizable", "welcome.start")
+		/// Scoreboard
+		internal static let scoreboard = L10n.tr("Localizable", "welcome.scoreboard")
+		/// Start Game!
+		internal static let startGame = L10n.tr("Localizable", "welcome.start_game")
 		/// Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 		internal static let title = L10n.tr("Localizable", "welcome.title")
 	}

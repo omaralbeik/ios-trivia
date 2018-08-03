@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class GameView: LayoutableView {
+final class GameView: LayoutableView, Loadingable {
 
 	private lazy var headerView: GameHeaderView = {
 		return GameHeaderView()

@@ -8,8 +8,10 @@
 
 import Foundation
 
-struct TokenResult: Codable {
-	var userId: String
-	var idToken: String
-	var refreshToken: String
+public struct TokenResult: Codable {
+
+	public var userId: String
+	public var idToken: String
+	public var refreshToken: String
+
 }

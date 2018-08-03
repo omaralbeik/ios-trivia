@@ -26,6 +26,10 @@ final class AuthCache {
 		return defaults.value(forKey: Keys.idTokenExpiryDate.rawValue) as? Date
 	}
 
+	static var userId: String? {
+		return defaults.string(forKey: Keys.userId.rawValue)
+	}
+
 	static var isAuthenticated: Bool {
 		guard refreshToken != nil else { return false }
 		guard let date = idTokenExpiryDate else { return false }
@@ -37,16 +41,26 @@ final class AuthCache {
 	}
 
 	static func saveAuthResult(_ authResult: AuthResult) {
-		saveTokens(refreshToken: authResult.refreshToken, idToken: authResult.idToken)
+		saveInfo(refreshToken: authResult.refreshToken, idToken: authResult.idToken, userId: authResult.localId)
 	}
 
 	static func saveTokenResult(_ tokenResult: TokenResult) {
-		saveTokens(refreshToken: tokenResult.refreshToken, idToken: tokenResult.idToken)
+		saveInfo(refreshToken: tokenResult.refreshToken, idToken: tokenResult.idToken, userId: tokenResult.userId)
 	}
 
-	private static func saveTokens(refreshToken: String, idToken: String) {
+	static func drop() {
+		saveInfo(refreshToken: nil, idToken: nil, userId: nil)
+	}
+
+}
+
+// MARK: - Helpers
+private extension AuthCache {
+
+	static func saveInfo(refreshToken: String?, idToken: String?, userId: String?) {
 		defaults.set(idToken, forKey: Keys.idToken.rawValue)
 		defaults.set(refreshToken, forKey: Keys.refreshToken.rawValue)
+		defaults.set(userId, forKey: Keys.userId.rawValue)
 
 		let expiryDate = Date().addingTimeInterval(3600)
 		defaults.set(expiryDate, forKey: Keys.idTokenExpiryDate.rawValue)
@@ -54,12 +68,14 @@ final class AuthCache {
 
 }
 
+// MARK: - Keys
 private extension AuthCache {
 
 	enum Keys: String {
 		case idToken = "id_token"
 		case refreshToken = "refresh_token"
 		case idTokenExpiryDate = "id_token_expiry_date"
+		case userId = "user_id"
 	}
 
 }

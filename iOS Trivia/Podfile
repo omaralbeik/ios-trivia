@@ -10,7 +10,8 @@ target 'iOS Trivia' do
   pod 'Firebase/Core'
   pod 'Moya'
 
-  # Caching
-  pod 'UserDefaultsStore'
+  # UI
+  pod 'NVActivityIndicatorView'
+  pod 'SwiftMessages'
 
 end

@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class DefaultDecoder: JSONDecoder {
+final public class DefaultDecoder: JSONDecoder {
 
 	override init() {
 		super.init()

@@ -9,12 +9,18 @@
 import Foundation
 import Moya
 
+/// AuthService
+///
+/// - register: register new user.
+/// - login: login as existing user.
+/// - getIdToken: get an id token from a refresh tokem
 public enum AuthService {
 	case register(email: String, password: String)
 	case login(email: String, password: String)
 	case getIdToken(refreshToken: String)
 }
 
+// MARK: - TargetType
 extension AuthService: TargetType {
 
 	public var baseURL: URL {
@@ -52,36 +58,23 @@ extension AuthService: TargetType {
 		switch self {
 		case .register(let email, let password),
 			 .login(let email, let password):
-			let parameters = [
+			let bodyParameters = [
 				"email": email,
 				"password": password,
 				"returnSecureToken": "true"
 			]
-			return .requestCompositeParameters(bodyParameters: parameters, bodyEncoding: JSONEncoding.default, urlParameters: API.apiKey)
+			return .requestCompositeParameters(bodyParameters: bodyParameters, bodyEncoding: JSONEncoding.default, urlParameters: API.apiKey)
 
 		case .getIdToken(let refreshToken):
-			let parameters = [
+			let bodyParameters = [
 				"grant_type": "refresh_token",
 				"refresh_token": refreshToken
 			]
-			return .requestCompositeParameters(bodyParameters: parameters, bodyEncoding: JSONEncoding.default, urlParameters: API.apiKey)
+			return .requestCompositeParameters(bodyParameters: bodyParameters, bodyEncoding: JSONEncoding.default, urlParameters: API.apiKey)
 		}
 	}
 
 	public var headers: [String: String]? { return nil }
 	public var sampleData: Data { return "".utf8Encoded }
-
-}
-
-// MARK: - Mapping
-extension Response {
-
-	var authResult: AuthResult? {
-		return try? map(AuthResult.self, using: DefaultDecoder())
-	}
-
-	var tokenResult: TokenResult? {
-		return try? map(TokenResult.self, using: DefaultDecoder())
-	}
 
 }

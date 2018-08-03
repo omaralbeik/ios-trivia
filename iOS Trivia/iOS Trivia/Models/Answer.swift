@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct Answer: Codable {
-	var text: String
-	var isCorrect: Bool
+public struct Answer: Codable {
+
+	public var text: String
+	public var isCorrect: Bool
+
 }

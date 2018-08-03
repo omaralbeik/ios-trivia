@@ -8,9 +8,11 @@
 
 import Foundation
 
-struct AuthResult: Codable {
-	var email: String
-	var localId: String
-	var idToken: String
-	var refreshToken: String
+public struct AuthResult: Codable {
+
+	public var email: String
+	public var localId: String
+	public var idToken: String
+	public var refreshToken: String
+
 }

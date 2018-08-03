@@ -51,7 +51,7 @@ final class FlipView: LayoutableView {
 	}()
 
 	override func setupViews() {
-		backgroundColor = Color.softGray
+		backgroundColor = Color.lightGray
 
 		layer.cornerRadius = 8
 		addSubview(titleLabel)
@@ -88,7 +88,7 @@ extension FlipView {
 		UIView.transition(with: self, duration: 0.5, options: options, animations: { [unowned self] in
 			self.titleLabel.isHidden = (face == .back)
 			self.confirmButton.isHidden = (face == .front)
-			self.backgroundColor = (face == .front) ? Color.softGray : Color.softYellow
+			self.backgroundColor = (face == .front) ? Color.lightGray : Color.lightYellow
 			}, completion: { [unowned self] _ in
 				self.isUserInteractionEnabled = true
 				self.delegate?.flipView(self, didFlipToFace: face)

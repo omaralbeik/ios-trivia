@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class AuthViewController: UIViewController, Layouting {
+final class AuthViewController: LayoutingViewController, Layouting {
 	typealias ViewType = AuthView
 
 	enum Mode: Int {
@@ -29,6 +29,8 @@ final class AuthViewController: UIViewController, Layouting {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		registerForKeyboardEvents()
+
 		layoutableView.modeSegmentedControl.addTarget(self, action: #selector(didChangeModeSegmentedControlIndex(_:)), for: .valueChanged)
 		layoutableView.actionButton.addTarget(self, action: #selector(didTapActionButton(_:)), for: .touchUpInside)
 
@@ -37,11 +39,34 @@ final class AuthViewController: UIViewController, Layouting {
 		layoutableView.passwordTextField.text = "testpass"
 	}
 
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
 
 		layoutableView.emailTextField.becomeFirstResponder()
 	}
+
+	override func setGestureRecognizers() {
+		let tap = UITapGestureRecognizer(target: view, action: #selector(view.endEditing(_:)))
+		view.addGestureRecognizer(tap)
+	}
+
+}
+
+// MARK: - KeyboardObserving
+extension AuthViewController: KeyboardObserving {
+
+	func keyboardWillShow(_ notification: KeyboardNotification?) {
+		layoutableView.keyboardWillShow(notification)
+	}
+
+	func keyboardWillHide(_ notification: KeyboardNotification?) {
+		layoutableView.keyboardWillHide(notification)
+	}
+
+	func keyboardDidShow(_ notification: KeyboardNotification?) {}
+	func keyboardDidHide(_ notification: KeyboardNotification?) {}
+	func keyboardWillChangeFrame(_ notification: KeyboardNotification?) {}
+	func keyboardDidChangeFrame(_ notification: KeyboardNotification?) {}
 
 }
 
@@ -54,7 +79,7 @@ private extension AuthViewController {
 	}
 
 	@objc
-	func didTapActionButton(_ button: UIButton) {
+	func didTapActionButton(_ button: Button) {
 		guard let email = layoutableView.emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
 			return
 		}
@@ -75,38 +100,50 @@ private extension AuthViewController {
 // MARK: - Networking
 private extension AuthViewController {
 
-	func login(sender: UIButton, email: String, password: String) {
-		sender.isEnabled = false
+	func login(sender: Button, email: String, password: String) {
+		sender.setLoading(true)
 
-		API.authProvider.request(.login(email: email, password: password)) { result in
-			sender.isEnabled = true
+		API.authProvider.request(.login(email: email, password: password), dataType: AuthResult.self) { [unowned self] result in
+			sender.setLoading(false)
+
 			switch result {
 			case .failure(let error):
-				print(error.localizedDescription)
-			case .success(let response):
-				guard let authResult = response.authResult else {
-//					print(try? response.mapJSON())
-					return
-				}
+				Alert(serverError: error).show()
 
-				AuthCache.saveAuthResult(authResult)
-				(UIApplication.shared.delegate as! AppDelegate).showWelcomeViewController()
+			case .success(let authResult):
+				self.saveUserData(sender: sender, authResult: authResult)
 			}
 		}
 	}
 
-	func register(sender: UIButton, email: String, password: String) {
-		sender.isEnabled = false
+	func register(sender: Button, email: String, password: String) {
+		sender.setLoading(true)
 
-		API.authProvider.request(.register(email: email, password: password)) { result in
-			sender.isEnabled = true
+		API.authProvider.request(.register(email: email, password: password), dataType: AuthResult.self) { [unowned self] result in
+			sender.setLoading(false)
+
 			switch result {
 			case .failure(let error):
-				print(error.localizedDescription)
-			case .success(let response):
-				guard let authResult = response.authResult else { return }
+				Alert(serverError: error).show()
 
-				AuthCache.saveAuthResult(authResult)
+			case .success(let authResult):
+				self.saveUserData(sender: sender, authResult: authResult)
+			}
+		}
+	}
+
+	func saveUserData(sender: Button, authResult: AuthResult) {
+		AuthCache.saveAuthResult(authResult)
+		sender.setLoading(true)
+
+		API.userProvider.request(.saveEmail(authResult: authResult), dataType: [String: String].self) { result in
+			sender.setLoading(false)
+
+			switch result {
+			case .failure(let error):
+				Alert(serverError: error).show()
+
+			case .success:
 				(UIApplication.shared.delegate as! AppDelegate).showWelcomeViewController()
 			}
 		}

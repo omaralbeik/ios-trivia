@@ -10,41 +10,30 @@ import UIKit
 
 final class AuthView: LayoutableView {
 
+	lazy var logoImageView: UIImageView = {
+		let view = UIImageView(image: #imageLiteral(resourceName: "logo"))
+		view.contentMode = .scaleAspectFit
+		view.tintColor = .white
+		return view
+	}()
+
 	lazy var modeSegmentedControl: UISegmentedControl = {
 		let control = UISegmentedControl(items: [L10n.Auth.Mode.login, L10n.Auth.Mode.register])
 		control.selectedSegmentIndex = 0
-		control.tintColor = .black
+		control.tintColor = Color.white
 		return control
 	}()
 
-	lazy var emailTextField: UITextField = {
-		let textField = UITextField()
-		textField.placeholder = L10n.Auth.emailAddress
-		textField.keyboardType = .emailAddress
-		if #available(iOS 10.0, *) {
-			textField.textContentType = .emailAddress
-		}
-		return setTextFieldStyle(textField)
+	lazy var emailTextField: TextField = {
+		return TextField(placeholder: L10n.Auth.emailAddress, textType: .email)
 	}()
 
 	lazy var passwordTextField: UITextField = {
-		let textField = UITextField()
-		textField.placeholder = L10n.Auth.password
-		textField.isSecureTextEntry = true
-		if #available(iOS 11.0, *) {
-			textField.textContentType = .password
-		}
-		return setTextFieldStyle(textField)
+		return TextField(placeholder: L10n.Auth.password, textType: .password)
 	}()
 
-	lazy var actionButton: UIButton = {
-		let button = UIButton(type: .system)
-		button.setTitle(L10n.Auth.Action.login, for: .normal)
-		button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
-		button.backgroundColor = .black
-		button.tintColor = .white
-		button.layer.cornerRadius = preferredPadding / 3
-		return button
+	lazy var actionButton: Button = {
+		return Button(title: L10n.Auth.Action.login)
 	}()
 
 	lazy var stackView: UIStackView = {
@@ -56,23 +45,37 @@ final class AuthView: LayoutableView {
 		return view
 	}()
 
-	override func setupViews() {
-		super.setupViews()
+	override var backgroundColor: UIColor? {
+		didSet {
+			logoImageView.backgroundColor = backgroundColor
+		}
+	}
 
+	override func setupViews() {
+		backgroundColor = Color.lightOrange
+
+		addSubview(logoImageView)
 		addSubview(modeSegmentedControl)
 		addSubview(stackView)
 		addSubview(actionButton)
 	}
 
 	override func setupLayout() {
+
+		logoImageView.snp.makeConstraints { make in
+			make.width.lessThanOrEqualToSuperview().multipliedBy(0.75)
+			make.centerX.equalToSuperview()
+			make.top.greaterThanOrEqualToSuperview().inset(preferredPadding * 1.5)
+		}
+
 		modeSegmentedControl.snp.makeConstraints { make in
-			make.top.equalToSuperview().inset(preferredPadding * 2)
+			make.top.equalTo(logoImageView.snp.bottom).offset(preferredPadding)
 			make.leading.trailing.equalToSuperview().inset(preferredPadding)
 			make.height.equalTo(preferredPadding * 2)
 		}
 
-		emailTextField.snp.makeConstraints { $0.height.equalTo(preferredPadding * 2.5) }
-		passwordTextField.snp.makeConstraints { $0.height.equalTo(preferredPadding * 2.5) }
+		emailTextField.snp.makeConstraints { $0.height.equalTo(preferredPadding * 2.2) }
+		passwordTextField.snp.makeConstraints { $0.height.equalTo(preferredPadding * 2.2) }
 
 		stackView.snp.makeConstraints { make in
 			make.leading.trailing.equalToSuperview().inset(preferredPadding)
@@ -82,10 +85,38 @@ final class AuthView: LayoutableView {
 		actionButton.snp.makeConstraints { make in
 			make.top.equalTo(stackView.snp.bottom).offset(preferredPadding)
 			make.leading.trailing.equalTo(stackView)
-			make.height.equalTo(preferredPadding * 2.5)
+			make.height.equalTo(preferredPadding * 2.2)
 			make.centerX.equalToSuperview()
+			make.bottom.equalToSuperview().inset(preferredPadding * 2)
 		}
 	}
+}
+
+// MARK: - KeyboardHandling
+extension AuthView: KeyboardHandling {
+
+	func keyboardWillShow(_ notification: KeyboardNotification?) {
+		let height = notification?.endFrame.height ?? 250
+		let duration = notification?.animationDuration ?? 0.25
+		actionButton.snp.updateConstraints { $0.bottom.equalToSuperview().inset(height + (preferredPadding * 2)) }
+		UIView.animate(withDuration: duration) { [unowned self] in
+			self.layoutIfNeeded()
+		}
+	}
+
+	func keyboardWillHide(_ notification: KeyboardNotification?) {
+		let duration = notification?.animationDuration ?? 0.25
+		actionButton.snp.updateConstraints { $0.bottom.equalToSuperview().inset(preferredPadding * 2) }
+		UIView.animate(withDuration: duration) { [unowned self] in
+			self.layoutIfNeeded()
+		}
+	}
+
+	func keyboardDidShow(_ notification: KeyboardNotification?) {}
+	func keyboardDidHide(_ notification: KeyboardNotification?) {}
+	func keyboardWillChangeFrame(_ notification: KeyboardNotification?) {}
+	func keyboardDidChangeFrame(_ notification: KeyboardNotification?) {}
+
 }
 
 // MARK: - Configure
@@ -112,8 +143,9 @@ private extension AuthView {
 		textField.textAlignment = .center
 		textField.autocapitalizationType = .none
 		textField.autocorrectionType = .no
-		textField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
-		textField.textColor = .black
+		textField.backgroundColor = Color.darkOrange
+		textField.textColor = Color.white
+		textField.tintColor = Color.white.withAlphaComponent(0.75)
 		textField.layer.cornerRadius = preferredPadding / 3
 		return textField
 	}

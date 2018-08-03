@@ -11,18 +11,12 @@ import Moya
 
 public struct API {
 
+	private init() {}
+
 	public static let authProvider = MoyaProvider<AuthService>()
 	public static let gameProvider = MoyaProvider<GameService>()
+	public static let userProvider = MoyaProvider<UserService>()
 
-	static let apiKey = ["key": "AIzaSyB2DanM4vlas94SmDFQlTKmFfI1GKmQAQg"]
-//	static let baseHeaders = ["Content-Type": "application/json"]
-
-}
-
-extension String {
-
-	var utf8Encoded: Data {
-		return data(using: .utf8)!
-	}
+	public static let apiKey = ["key": "AIzaSyB2DanM4vlas94SmDFQlTKmFfI1GKmQAQg"]
 
 }

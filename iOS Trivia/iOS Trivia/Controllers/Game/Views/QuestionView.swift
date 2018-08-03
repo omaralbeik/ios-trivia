@@ -25,7 +25,10 @@ final class QuestionView: LayoutableView {
 	}
 
 	override func setupLayout() {
-		textLabel.snp.makeConstraints { $0.edges.equalToSuperview().inset(preferredPadding) }
+		textLabel.snp.makeConstraints { make in
+			make.top.equalToSuperview().inset(preferredPadding * 2)
+			make.leading.bottom.trailing.equalToSuperview().inset(preferredPadding)
+		}
 	}
 
 }
