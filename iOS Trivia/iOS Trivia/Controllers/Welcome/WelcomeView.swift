@@ -10,20 +10,6 @@ import UIKit
 
 final class WelcomeView: LayoutableView {
 
-	lazy var logoImageView: UIImageView = {
-		let view = UIImageView(image: #imageLiteral(resourceName: "logo"))
-		view.tintColor = .white
-		return view
-	}()
-
-	lazy var titleLabel: UILabel = {
-		let label = UILabel()
-		label.text = L10n.Welcome.title
-		label.numberOfLines = 0
-		label.textAlignment = .center
-		return label
-	}()
-
 	lazy var startButton: Button = {
 		return Button(title: L10n.Welcome.startGame)
 	}()
@@ -41,39 +27,38 @@ final class WelcomeView: LayoutableView {
 		return view
 	}()
 
+	lazy var viewOnGithubButton: UIButton = {
+		let button = UIButton(type: .system)
+		button.setImage(#imageLiteral(resourceName: "icon_github"), for: .normal)
+		button.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: preferredPadding / 2)
+		button.setTitle(L10n.Welcome.viewOnGithub, for: .normal)
+		button.tintColor = Color.white
+		return button
+	}()
+
 	override var backgroundColor: UIColor? {
 		didSet {
-			logoImageView.backgroundColor = backgroundColor
-			titleLabel.backgroundColor = backgroundColor
+			viewOnGithubButton.backgroundColor = backgroundColor
 		}
 	}
 
 	override func setupViews() {
 		backgroundColor = Color.lightOrange
-
-		addSubview(logoImageView)
-		addSubview(titleLabel)
 		addSubview(buttonsStackView)
+		addSubview(viewOnGithubButton)
 	}
 
 	override func setupLayout() {
-		logoImageView.snp.makeConstraints { make in
-			make.width.equalTo(preferredPadding * 13)
-			make.centerX.equalToSuperview()
-			make.centerY.equalToSuperview().offset(-preferredPadding * 4)
-		}
-
-		titleLabel.snp.makeConstraints { make in
-			make.top.equalTo(logoImageView.snp.bottom).offset(preferredPadding)
-			make.leading.trailing.equalToSuperview().inset(preferredPadding)
-		}
-
 		startButton.snp.makeConstraints { $0.height.equalTo(preferredPadding * 2) }
 		scoreboardButton.snp.makeConstraints { $0.height.equalTo(preferredPadding * 2) }
 
 		buttonsStackView.snp.makeConstraints { make in
-			make.top.equalTo(titleLabel.snp.bottom).offset(preferredPadding * 2)
+			make.centerY.equalToSuperview()
 			make.leading.trailing.equalToSuperview().inset(preferredPadding * 1.5)
+		}
+
+		viewOnGithubButton.snp.makeConstraints { make in
+			make.leading.bottom.trailing.equalToSuperview().inset(preferredPadding * 1.5)
 		}
 	}
 

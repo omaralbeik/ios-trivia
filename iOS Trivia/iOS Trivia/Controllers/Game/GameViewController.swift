@@ -58,7 +58,24 @@ private extension GameViewController {
 
 	@objc
 	func didTapCancelBarButtonItem() {
-		dismiss(animated: true)
+		guard !remainingIds.isEmpty else {
+			dismiss(animated: true)
+			return
+		}
+
+		let alert = UIAlertController(title: L10n.Game.QuitAlert.title, message: nil, preferredStyle: .alert)
+
+		let quitAction = UIAlertAction(title: L10n.Game.QuitAlert.Options.quit, style: .destructive) { [unowned self] _ in
+			self.dismiss(animated: true)
+		}
+
+		let stayAction = UIAlertAction(title: L10n.Game.QuitAlert.Options.stay, style: .cancel, handler: nil)
+
+		alert.addAction(quitAction)
+		alert.addAction(stayAction)
+
+		alert.view.tintColor = Color.darkBlack
+		present(alert, animated: true)
 	}
 
 }

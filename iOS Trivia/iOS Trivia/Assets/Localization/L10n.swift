@@ -61,6 +61,18 @@ internal enum L10n {
 				internal static let currentQuestion = L10n.tr("Localizable", "game.header.titles.current_question")
 			}
 		}
+
+		internal enum QuitAlert {
+			/// Quit Game?
+			internal static let title = L10n.tr("Localizable", "game.quit_alert.title")
+
+			internal enum Options {
+				/// Quit
+				internal static let quit = L10n.tr("Localizable", "game.quit_alert.options.quit")
+				/// Stay
+				internal static let stay = L10n.tr("Localizable", "game.quit_alert.options.stay")
+			}
+		}
 	}
 
 	internal enum Scoreboard {
@@ -80,8 +92,8 @@ internal enum L10n {
 		internal static let scoreboard = L10n.tr("Localizable", "welcome.scoreboard")
 		/// Start Game!
 		internal static let startGame = L10n.tr("Localizable", "welcome.start_game")
-		/// Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		internal static let title = L10n.tr("Localizable", "welcome.title")
+		/// View on Github
+		internal static let viewOnGithub = L10n.tr("Localizable", "welcome.view_on_github")
 
 		internal enum LogoutAlert {
 			/// You will not be able to use the app until you login again

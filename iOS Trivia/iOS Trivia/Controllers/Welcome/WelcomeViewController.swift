@@ -20,6 +20,7 @@ final class WelcomeViewController: UIViewController, Layouting {
 
 		layoutableView.startButton.addTarget(self, action: #selector(didTapStartButton(_:)), for: .touchUpInside)
 		layoutableView.scoreboardButton.addTarget(self, action: #selector(didTapScoreboardButton(_:)), for: .touchUpInside)
+		layoutableView.viewOnGithubButton.addTarget(self, action: #selector(didTapViewOnGithubButton), for: .touchUpInside)
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
@@ -61,6 +62,16 @@ private extension WelcomeViewController {
 	func didTapScoreboardButton(_ button: Button) {
 		let viewController = UINavigationController(rootViewController: ScoreboardViewController())
 		present(viewController, animated: true)
+	}
+
+	@objc
+	func didTapViewOnGithubButton() {
+		let url = URL(string: "https://github.com/omaralbeik/ios-trivia")!
+		if #available(iOS 10.0, *) {
+			UIApplication.shared.open(url, options: [:])
+		} else {
+			UIApplication.shared.openURL(url)
+		}
 	}
 
 }

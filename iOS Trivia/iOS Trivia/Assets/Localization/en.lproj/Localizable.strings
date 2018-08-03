@@ -15,13 +15,13 @@
 "auth.action.register" = "REGISTER";
 
 // Welcome
-"welcome.title" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 "welcome.start_game" = "Start Game!";
 "welcome.scoreboard" = "Scoreboard";
 "welcome.logout_alert.title" = "Logout?";
 "welcome.logout_alert.message" = "You will not be able to use the app until you login again";
 "welcome.logout_alert.options.logout" = "Logout";
 "welcome.logout_alert.options.cancel" = "Cancel";
+"welcome.view_on_github" = "View on Github";
 
 // Game
 "game.header.titles.current_question" = "Current Question";
@@ -29,6 +29,9 @@
 "game.header.titles.available_wild_cards" = "Available Wild Cards";
 "game.header.available_wild_cards" = "%d/%d";
 "game.answer.select" = "Select";
+"game.quit_alert.title" = "Quit Game?";
+"game.quit_alert.options.quit" = "Quit";
+"game.quit_alert.options.stay" = "Stay";
 
 // Scoreboard
 "scoreboard.title" = "Scoreboard";
