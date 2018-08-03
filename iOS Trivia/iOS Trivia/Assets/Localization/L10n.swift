@@ -63,6 +63,18 @@ internal enum L10n {
 		}
 	}
 
+	internal enum Scoreboard {
+		/// Scoreboard
+		internal static let title = L10n.tr("Localizable", "scoreboard.title")
+
+		internal enum Cell {
+			/// %d Points
+			internal static func totalPoints(_ p1: Int) -> String {
+				return L10n.tr("Localizable", "scoreboard.cell.total_points", p1)
+			}
+		}
+	}
+
 	internal enum Welcome {
 		/// Scoreboard
 		internal static let scoreboard = L10n.tr("Localizable", "welcome.scoreboard")

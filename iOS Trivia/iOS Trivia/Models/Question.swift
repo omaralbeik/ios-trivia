@@ -12,6 +12,7 @@ public struct Question: Codable {
 
 	public var id: String
 	public var text: String
+	public var duration: TimeInterval
 	public var points: Int
 	public var answers: [Answer]
 

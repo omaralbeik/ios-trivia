@@ -58,7 +58,7 @@ extension AnswersView {
 
 	func configure(for answers: [Answer]) {
 		for view in stackView.arrangedSubviews {
-			stackView.removeArrangedSubview(view)
+			view.removeFromSuperview()
 		}
 
 		for (index, answer) in answers.enumerated() {

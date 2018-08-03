@@ -26,5 +26,9 @@
 "game.header.available_wild_cards" = "%d/%d";
 "game.answer.select" = "Select";
 
+// Scoreboard
+"scoreboard.title" = "Scoreboard";
+"scoreboard.cell.total_points" = "%d Points";
+
 // API
 "api.errors.server_error" = "Unknown Server Error";

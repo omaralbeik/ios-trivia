@@ -28,6 +28,19 @@ final class WelcomeView: LayoutableView {
 		return Button(title: L10n.Welcome.startGame)
 	}()
 
+	lazy var scoreboardButton: Button = {
+		return Button(title: L10n.Welcome.scoreboard)
+	}()
+
+	lazy var buttonsStackView: UIStackView = {
+		let view = UIStackView(arrangedSubviews: [startButton, scoreboardButton])
+		view.axis = .vertical
+		view.alignment = .fill
+		view.distribution = .fillEqually
+		view.spacing = preferredPadding / 2
+		return view
+	}()
+
 	override var backgroundColor: UIColor? {
 		didSet {
 			logoImageView.backgroundColor = backgroundColor
@@ -40,7 +53,7 @@ final class WelcomeView: LayoutableView {
 
 		addSubview(logoImageView)
 		addSubview(titleLabel)
-		addSubview(startButton)
+		addSubview(buttonsStackView)
 	}
 
 	override func setupLayout() {
@@ -55,10 +68,12 @@ final class WelcomeView: LayoutableView {
 			make.leading.trailing.equalToSuperview().inset(preferredPadding)
 		}
 
-		startButton.snp.makeConstraints { make in
-			make.height.equalTo(preferredPadding * 2)
-			make.top.equalTo(titleLabel.snp.bottom).offset(preferredPadding * 1.5)
-			make.centerX.equalToSuperview()
+		startButton.snp.makeConstraints { $0.height.equalTo(preferredPadding * 2) }
+		scoreboardButton.snp.makeConstraints { $0.height.equalTo(preferredPadding * 2) }
+
+		buttonsStackView.snp.makeConstraints { make in
+			make.top.equalTo(titleLabel.snp.bottom).offset(preferredPadding * 2)
+			make.leading.trailing.equalToSuperview().inset(preferredPadding * 1.5)
 		}
 	}
 

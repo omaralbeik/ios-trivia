@@ -40,7 +40,6 @@ final class GameView: LayoutableView, Loadingable {
 	}
 
 	override func setupLayout() {
-
 		headerView.snp.makeConstraints { make in
 			if #available(iOS 11.0, *) {
 				make.top.equalTo(safeAreaLayoutGuide)

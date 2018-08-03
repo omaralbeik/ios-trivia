@@ -19,6 +19,7 @@ final class WelcomeViewController: UIViewController, Layouting {
 		super.viewDidLoad()
 
 		layoutableView.startButton.addTarget(self, action: #selector(didTapStartButton(_:)), for: .touchUpInside)
+		layoutableView.scoreboardButton.addTarget(self, action: #selector(didTapScoreboardButton(_:)), for: .touchUpInside)
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
@@ -40,8 +41,14 @@ private extension WelcomeViewController {
 	}
 
 	@objc
-	func didTapStartButton( _ button: Button) {
+	func didTapStartButton(_ button: Button) {
 		fetchIdToken(sender: button)
+	}
+
+	@objc
+	func didTapScoreboardButton(_ button: Button) {
+		let viewController = UINavigationController(rootViewController: ScoreboardViewController())
+		present(viewController, animated: true)
 	}
 
 }
