@@ -82,6 +82,20 @@ internal enum L10n {
 		internal static let startGame = L10n.tr("Localizable", "welcome.start_game")
 		/// Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 		internal static let title = L10n.tr("Localizable", "welcome.title")
+
+		internal enum LogoutAlert {
+			/// You will not be able to use the app until you login again
+			internal static let message = L10n.tr("Localizable", "welcome.logout_alert.message")
+			/// Logout?
+			internal static let title = L10n.tr("Localizable", "welcome.logout_alert.title")
+
+			internal enum Options {
+				/// Cancel
+				internal static let cancel = L10n.tr("Localizable", "welcome.logout_alert.options.cancel")
+				/// Logout
+				internal static let logout = L10n.tr("Localizable", "welcome.logout_alert.options.logout")
+			}
+		}
 	}
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length nesting type_body_length type_name

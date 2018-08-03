@@ -36,8 +36,20 @@ private extension WelcomeViewController {
 
 	@objc
 	func didTapLogoutBarButtonItem() {
-		AuthCache.drop()
-		(UIApplication.shared.delegate as! AppDelegate).showAuthViewController()
+		let alert = UIAlertController(title: L10n.Welcome.LogoutAlert.title, message: L10n.Welcome.LogoutAlert.message, preferredStyle: .alert)
+
+		let logoutAction = UIAlertAction(title: L10n.Welcome.LogoutAlert.Options.logout, style: .destructive) { _ in
+			AuthCache.drop()
+			(UIApplication.shared.delegate as! AppDelegate).showAuthViewController()
+		}
+
+		let cancelAction = UIAlertAction(title: L10n.Welcome.LogoutAlert.Options.cancel, style: .cancel, handler: nil)
+
+		alert.addAction(logoutAction)
+		alert.addAction(cancelAction)
+
+		alert.view.tintColor = Color.darkBlack
+		present(alert, animated: true)
 	}
 
 	@objc

@@ -18,6 +18,10 @@
 "welcome.title" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 "welcome.start_game" = "Start Game!";
 "welcome.scoreboard" = "Scoreboard";
+"welcome.logout_alert.title" = "Logout?";
+"welcome.logout_alert.message" = "You will not be able to use the app until you login again";
+"welcome.logout_alert.options.logout" = "Logout";
+"welcome.logout_alert.options.cancel" = "Cancel";
 
 // Game
 "game.header.titles.current_question" = "Current Question";
