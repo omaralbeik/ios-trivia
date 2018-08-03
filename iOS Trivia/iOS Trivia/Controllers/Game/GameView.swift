@@ -40,10 +40,16 @@ final class GameView: LayoutableView {
 	}
 
 	override func setupLayout() {
+
 		headerView.snp.makeConstraints { make in
-			make.leading.top.trailing.equalToSuperview()
-			make.height.equalTo(preferredPadding * 6)
+			if #available(iOS 11.0, *) {
+				make.top.equalTo(safeAreaLayoutGuide)
+			} else {
+				make.top.equalToSuperview()
+			}
+			make.leading.trailing.equalToSuperview()
 		}
+
 		scrollView.snp.makeConstraints { make in
 			make.top.equalTo(headerView.snp.bottom)
 			make.leading.trailing.bottom.equalToSuperview()
@@ -67,6 +73,11 @@ extension GameView {
 	func configure(for question: Question) {
 		questionView.configure(for: question)
 		answersView.configure(for: question.answers)
+	}
+
+	func configureHeader(question: Int, maxQuestions: Int, wildCard: Int, maxWildCards: Int) {
+		headerView.questionLabel.text = L10n.Game.Header.currentQuestion(question, maxQuestions)
+		headerView.wildCardLabel.text = L10n.Game.Header.availableWildCards(wildCard, maxWildCards)
 	}
 
 }

@@ -6,9 +6,21 @@
   Copyright © 2018 Omar Albeik. All rights reserved.
 */
 
+// Auth
+"auth.mode.login" = "Login";
+"auth.mode.register" = "Register";
+"auth.email_address" = "Email Address";
+"auth.password" = "Password";
+"auth.action.login" = "LOGIN";
+"auth.action.register" = "REGISTER";
+
 // Welcome
 "welcome.title" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 "welcome.start" = "Start";
 
 // Game
+"game.header.titles.current_question" = "Current Question";
+"game.header.current_question" = "%d/%d";
+"game.header.titles.available_wild_cards" = "Available Wild Cards";
+"game.header.available_wild_cards" = "%d/%d";
 "game.answer.select" = "Select";

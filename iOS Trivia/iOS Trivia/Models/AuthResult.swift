@@ -1,5 +1,5 @@
 //
-//  Question.swift
+//  AuthResult.swift
 //  iOS Trivia
 //
 //  Created by Omar Albeik on 8/2/18.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct Question: Codable {
-	var id: Int
-	var text: String
-	var points: Int
-	var answers: [Answer]
+struct AuthResult: Codable {
+	var email: String
+	var localId: String
+	var idToken: String
+	var refreshToken: String
 }

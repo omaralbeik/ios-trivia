@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		setupWindow()
 		setupFirebase()
+
 		return true
 	}
 
@@ -27,13 +28,24 @@ private extension AppDelegate {
 
 	func setupWindow() {
 		window = UIWindow()
-		window?.rootViewController = WelcomeViewController()
+		AuthCache.hasRefreshToken ? showWelcomeViewController(animated: false) : showAuthViewController(animated: false)
 		window?.makeKeyAndVisible()
 	}
 
 	func setupFirebase() {
 		FirebaseApp.configure()
-		Database.database().isPersistenceEnabled = true
+	}
+
+}
+
+extension AppDelegate {
+
+	func showWelcomeViewController(animated: Bool = true) {
+		window?.switchRootViewController(to: WelcomeViewController(), animated: animated, options: .transitionFlipFromRight)
+	}
+
+	func showAuthViewController(animated: Bool = true) {
+		window?.switchRootViewController(to: AuthViewController(), animated: animated, options: .transitionFlipFromRight)
 	}
 
 }

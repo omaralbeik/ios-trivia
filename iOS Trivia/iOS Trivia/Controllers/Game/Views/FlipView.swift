@@ -35,14 +35,14 @@ final class FlipView: LayoutableView {
 		let label = UILabel()
 		label.textAlignment = .center
 		label.numberOfLines = 0
-		label.font = .systemFont(ofSize: 18, weight: .regular)
+		label.font = .systemFont(ofSize: 20, weight: .regular)
 		return label
 	}()
 
 	lazy var confirmButton: UIButton = {
 		let button = UIButton(type: .system)
 		button.setTitle(L10n.Game.Answer.select, for: .normal)
-		button.titleLabel?.font = .systemFont(ofSize: 22, weight: .bold)
+		button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
 		button.tintColor = Color.white
 		button.backgroundColor = Color.clear
 		button.isHidden = true

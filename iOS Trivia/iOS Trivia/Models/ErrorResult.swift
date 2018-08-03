@@ -1,5 +1,5 @@
 //
-//  Question.swift
+//  ErrorResult.swift
 //  iOS Trivia
 //
 //  Created by Omar Albeik on 8/2/18.
@@ -8,9 +8,7 @@
 
 import Foundation
 
-struct Question: Codable {
-	var id: Int
-	var text: String
-	var points: Int
-	var answers: [Answer]
+struct ErrorResult: Codable {
+	var code: Int
+	var message: String
 }

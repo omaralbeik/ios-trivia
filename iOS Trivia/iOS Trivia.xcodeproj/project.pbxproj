@@ -16,6 +16,8 @@
 		079B79452112DF96006BF34F /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079B79442112DF96006BF34F /* QuestionView.swift */; };
 		079B79472112E080006BF34F /* AnswersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079B79462112E080006BF34F /* AnswersView.swift */; };
 		079B794A2112E6CD006BF34F /* GameHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079B79492112E6CD006BF34F /* GameHeaderView.swift */; };
+		079C9CF62114304900D47060 /* AuthCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079C9CF52114304900D47060 /* AuthCache.swift */; };
+		079C9CF821143AEC00D47060 /* TokenResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079C9CF721143AEC00D47060 /* TokenResult.swift */; };
 		07A1A8E42112063200471B9A /* LayoutableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1A8E32112063200471B9A /* LayoutableView.swift */; };
 		07A1A8E62112068100471B9A /* Layouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1A8E52112068100471B9A /* Layouting.swift */; };
 		07A1A8E92112076200471B9A /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1A8E82112076200471B9A /* WelcomeView.swift */; };
@@ -27,6 +29,15 @@
 		07A1A902211210AB00471B9A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1A901211210AB00471B9A /* GameViewController.swift */; };
 		07A1A90C2112404100471B9A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1A90B2112404100471B9A /* Color.swift */; };
 		07A1A90E2112438300471B9A /* FlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A1A90D2112438300471B9A /* FlipView.swift */; };
+		07C4BBCF2113670900A61284 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4BBCE2113670900A61284 /* API.swift */; };
+		07C4BBD12113687600A61284 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4BBD02113687600A61284 /* AuthService.swift */; };
+		07C4BBD321136D3500A61284 /* AuthResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4BBD221136D3500A61284 /* AuthResult.swift */; };
+		07C4BBD721136F0D00A61284 /* ErrorResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4BBD621136F0D00A61284 /* ErrorResult.swift */; };
+		07C4BBDA2113713B00A61284 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4BBD92113713B00A61284 /* AuthView.swift */; };
+		07C4BBDC2113714D00A61284 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4BBDB2113714D00A61284 /* AuthViewController.swift */; };
+		07C4BBE021137E7B00A61284 /* UIWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4BBDF21137E7B00A61284 /* UIWindow+Extensions.swift */; };
+		07C4BBE22113922300A61284 /* DefaultDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4BBE12113922300A61284 /* DefaultDecoder.swift */; };
+		07C4BBE42113933300A61284 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4BBE32113933300A61284 /* GameService.swift */; };
 		8DD342418837BBC8BAA5C7F0 /* Pods_iOS_Trivia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D087F5F5317530B4F48BF36D /* Pods_iOS_Trivia.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,19 +53,28 @@
 		079B79442112DF96006BF34F /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		079B79462112E080006BF34F /* AnswersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswersView.swift; sourceTree = "<group>"; };
 		079B79492112E6CD006BF34F /* GameHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHeaderView.swift; sourceTree = "<group>"; };
+		079C9CF52114304900D47060 /* AuthCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCache.swift; sourceTree = "<group>"; };
+		079C9CF721143AEC00D47060 /* TokenResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResult.swift; sourceTree = "<group>"; };
 		07A1A8E32112063200471B9A /* LayoutableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutableView.swift; sourceTree = "<group>"; };
 		07A1A8E52112068100471B9A /* Layouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layouting.swift; sourceTree = "<group>"; };
 		07A1A8E82112076200471B9A /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		07A1A8EA2112077C00471B9A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		07A1A8EC211208CD00471B9A /* Layoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layoutable.swift; sourceTree = "<group>"; };
-		07A1A8EE21120D5000471B9A /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		07A1A8F321120DAE00471B9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		07A1A8F521120DB000471B9A /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07A1A8F621120E4A00471B9A /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
 		07A1A8FF2112109500471B9A /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		07A1A901211210AB00471B9A /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		07A1A90B2112404100471B9A /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		07A1A90D2112438300471B9A /* FlipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipView.swift; sourceTree = "<group>"; };
+		07C4BBCE2113670900A61284 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		07C4BBD02113687600A61284 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		07C4BBD221136D3500A61284 /* AuthResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResult.swift; sourceTree = "<group>"; };
+		07C4BBD621136F0D00A61284 /* ErrorResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResult.swift; sourceTree = "<group>"; };
+		07C4BBD92113713B00A61284 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		07C4BBDB2113714D00A61284 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		07C4BBDF21137E7B00A61284 /* UIWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extensions.swift"; sourceTree = "<group>"; };
+		07C4BBE12113922300A61284 /* DefaultDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDecoder.swift; sourceTree = "<group>"; };
+		07C4BBE32113933300A61284 /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		2F1FBD99000FC45DE7A668E0 /* Pods-iOS Trivia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Trivia.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Trivia/Pods-iOS Trivia.release.xcconfig"; sourceTree = "<group>"; };
 		4D3C9BFEA1C01E14F4BF9E38 /* Pods-iOS Trivia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Trivia.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Trivia/Pods-iOS Trivia.debug.xcconfig"; sourceTree = "<group>"; };
 		D087F5F5317530B4F48BF36D /* Pods_iOS_Trivia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_Trivia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,10 +113,12 @@
 		0744040F2111E4B40022440D /* iOS Trivia */ = {
 			isa = PBXGroup;
 			children = (
-				079B793F2112DECA006BF34F /* Models */,
+				079C9CF42114303100D47060 /* Caching */,
 				074404102111E4B40022440D /* AppDelegate.swift */,
 				0744041C2111E4B40022440D /* Info.plist */,
 				074404222111E4E90022440D /* GoogleService-Info.plist */,
+				07C4BBCD211366F600A61284 /* Networking */,
+				079B793F2112DECA006BF34F /* Models */,
 				07A1A8FB21120F5700471B9A /* Base */,
 				07A1A8F921120F3800471B9A /* Controllers */,
 				07A1A8EF21120D6800471B9A /* Assets */,
@@ -110,6 +132,9 @@
 			isa = PBXGroup;
 			children = (
 				079B79402112DED4006BF34F /* Question.swift */,
+				07C4BBD221136D3500A61284 /* AuthResult.swift */,
+				079C9CF721143AEC00D47060 /* TokenResult.swift */,
+				07C4BBD621136F0D00A61284 /* ErrorResult.swift */,
 				079B79422112DF12006BF34F /* Answer.swift */,
 			);
 			path = Models;
@@ -124,6 +149,14 @@
 				07A1A90D2112438300471B9A /* FlipView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		079C9CF42114303100D47060 /* Caching */ = {
+			isa = PBXGroup;
+			children = (
+				079C9CF52114304900D47060 /* AuthCache.swift */,
+			);
+			path = Caching;
 			sourceTree = "<group>";
 		};
 		07A1A8E22112060F00471B9A /* Protocols */ = {
@@ -166,6 +199,7 @@
 		07A1A8F921120F3800471B9A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				07C4BBD82113712600A61284 /* Auth */,
 				07A1A8E72112074900471B9A /* Welcome */,
 				07A1A8FC2112101A00471B9A /* Game */,
 			);
@@ -194,9 +228,30 @@
 			isa = PBXGroup;
 			children = (
 				07A1A90B2112404100471B9A /* Color.swift */,
+				07C4BBDF21137E7B00A61284 /* UIWindow+Extensions.swift */,
 			);
 			name = Extensions;
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		07C4BBCD211366F600A61284 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				07C4BBCE2113670900A61284 /* API.swift */,
+				07C4BBD02113687600A61284 /* AuthService.swift */,
+				07C4BBE32113933300A61284 /* GameService.swift */,
+				07C4BBE12113922300A61284 /* DefaultDecoder.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		07C4BBD82113712600A61284 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				07C4BBD92113713B00A61284 /* AuthView.swift */,
+				07C4BBDB2113714D00A61284 /* AuthViewController.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		56090885E429B95660D20D85 /* Pods */ = {
@@ -261,7 +316,6 @@
 			knownRegions = (
 				en,
 				Base,
-				tr,
 			);
 			mainGroup = 074404042111E4B40022440D;
 			productRefGroup = 0744040E2111E4B40022440D /* Products */;
@@ -295,16 +349,22 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-iOS Trivia/Pods-iOS Trivia-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/UserDefaultsStore/UserDefaultsStore.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UserDefaultsStore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,22 +410,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07C4BBDC2113714D00A61284 /* AuthViewController.swift in Sources */,
 				079B79412112DED4006BF34F /* Question.swift in Sources */,
 				07A1A902211210AB00471B9A /* GameViewController.swift in Sources */,
 				074404112111E4B40022440D /* AppDelegate.swift in Sources */,
+				07C4BBD12113687600A61284 /* AuthService.swift in Sources */,
 				07A1A8EB2112077C00471B9A /* WelcomeViewController.swift in Sources */,
 				07A1A8E62112068100471B9A /* Layouting.swift in Sources */,
+				07C4BBD721136F0D00A61284 /* ErrorResult.swift in Sources */,
 				07A1A8ED211208CD00471B9A /* Layoutable.swift in Sources */,
 				079B79432112DF12006BF34F /* Answer.swift in Sources */,
+				079C9CF62114304900D47060 /* AuthCache.swift in Sources */,
 				07A1A9002112109500471B9A /* GameView.swift in Sources */,
 				079B79472112E080006BF34F /* AnswersView.swift in Sources */,
+				07C4BBE42113933300A61284 /* GameService.swift in Sources */,
 				07A1A90C2112404100471B9A /* Color.swift in Sources */,
 				079B794A2112E6CD006BF34F /* GameHeaderView.swift in Sources */,
+				07C4BBD321136D3500A61284 /* AuthResult.swift in Sources */,
+				07C4BBDA2113713B00A61284 /* AuthView.swift in Sources */,
 				07A1A90E2112438300471B9A /* FlipView.swift in Sources */,
 				07A1A8F721120E4A00471B9A /* L10n.swift in Sources */,
+				07C4BBE22113922300A61284 /* DefaultDecoder.swift in Sources */,
 				07A1A8E42112063200471B9A /* LayoutableView.swift in Sources */,
 				079B79452112DF96006BF34F /* QuestionView.swift in Sources */,
+				07C4BBE021137E7B00A61284 /* UIWindow+Extensions.swift in Sources */,
+				07C4BBCF2113670900A61284 /* API.swift in Sources */,
 				07A1A8E92112076200471B9A /* WelcomeView.swift in Sources */,
+				079C9CF821143AEC00D47060 /* TokenResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,7 +447,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				0744041A2111E4B40022440D /* Base */,
-				07A1A8EE21120D5000471B9A /* tr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -385,7 +455,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				07A1A8F321120DAE00471B9A /* en */,
-				07A1A8F521120DB000471B9A /* tr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

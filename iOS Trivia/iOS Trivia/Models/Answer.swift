@@ -9,8 +9,6 @@
 import Foundation
 
 struct Answer: Codable {
-
 	var text: String
 	var isCorrect: Bool
-
 }
