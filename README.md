@@ -61,6 +61,7 @@ pod install
 - No Storyboard or Interface Builder, [SnapKit](https://github.com/SnapKit/SnapKit) for auto layout.
 - Firebase SDK was not used to demonstrate writing a networking layer using [Moya](https://github.com/Moya/Moya)
 - [SwiftLint](https://github.com/realm/SwiftLint) is used to keep the code consistent and clean.
+- [SwiftGen](https://github.com/SwiftGen/SwiftGen) is used to generate type-safe localization
 
 ## License
 MIT license. See [LICENSE](https://github.com/omaralbeik/ios-trivia/blob/master/LICENSE) for more information.
