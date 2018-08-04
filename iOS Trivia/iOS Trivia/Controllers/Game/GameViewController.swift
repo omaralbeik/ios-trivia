@@ -87,8 +87,8 @@ private extension GameViewController {
 
 		let alert = UIAlertController(title: L10n.Game.QuitAlert.title, message: nil, preferredStyle: .alert)
 
-		let quitAction = UIAlertAction(title: L10n.Game.QuitAlert.Options.quit, style: .destructive) { [unowned self] _ in
-			self.dismiss(animated: true)
+		let quitAction = UIAlertAction(title: L10n.Game.QuitAlert.Options.quit, style: .destructive) { [weak self] _ in
+			self?.dismiss(animated: true)
 		}
 
 		let stayAction = UIAlertAction(title: L10n.Game.QuitAlert.Options.stay, style: .cancel, handler: nil)
@@ -141,8 +141,10 @@ private extension GameViewController {
 
 		timer?.invalidate()
 		sender.setLoading(true)
-		API.userProvider.request(.submitAnswer(questionId: question.id, score: points, userId: userId, token: token), dataType: [String: Int].self) { [unowned self] result in
-			self.scheduledQuestionTimer()
+		API.userProvider.request(.submitAnswer(questionId: question.id, score: points, userId: userId, token: token), dataType: [String: Int].self) { [weak self] result in
+			guard let strongSelf = self else { return }
+
+			strongSelf.scheduledQuestionTimer()
 			sender.setLoading(false)
 
 			switch result {
@@ -152,12 +154,12 @@ private extension GameViewController {
 			case .success:
 
 				if question.answers[index].isCorrect {
-					self.showRightAnswerAlert(points: question.points)
+					strongSelf.showRightAnswerAlert(points: question.points)
 				} else {
-					self.showWrongAnswerAlert()
+					strongSelf.showWrongAnswerAlert()
 				}
 
-				self.fetchNextQuestion(sender: sender)
+				strongSelf.fetchNextQuestion(sender: sender)
 			}
 		}
 	}
@@ -174,17 +176,18 @@ private extension GameViewController {
 
 		timer?.invalidate()
 		sender.setLoading(true)
-		API.gameProvider.request(.question(id: id), dataType: Question.self) { [unowned self] result in
-			self.scheduledQuestionTimer()
+		API.gameProvider.request(.question(id: id), dataType: Question.self) { [weak self] result in
+			guard let strongSelf = self else { return }
+			strongSelf.scheduledQuestionTimer()
 			sender.setLoading(false)
 
 			switch result {
 			case .failure(let error):
-				self.dismiss(animated: true)
+				strongSelf.dismiss(animated: true)
 				Alert(serverError: error).show()
 
 			case .success(let question):
-				self.updateView(question: question)
+				strongSelf.updateView(question: question)
 			}
 		}
 	}

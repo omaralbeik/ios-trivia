@@ -102,7 +102,8 @@ private extension AuthViewController {
 	func login(sender: Button, email: String, password: String) {
 		sender.setLoading(true)
 
-		API.authProvider.request(.login(email: email, password: password), dataType: AuthResult.self) { [unowned self] result in
+		API.authProvider.request(.login(email: email, password: password), dataType: AuthResult.self) { [weak self] result in
+			guard let strongSelf = self else { return }
 			sender.setLoading(false)
 
 			switch result {
@@ -110,7 +111,7 @@ private extension AuthViewController {
 				Alert(serverError: error).show()
 
 			case .success(let authResult):
-				self.saveUserData(sender: sender, authResult: authResult)
+				strongSelf.saveUserData(sender: sender, authResult: authResult)
 			}
 		}
 	}
@@ -118,7 +119,8 @@ private extension AuthViewController {
 	func register(sender: Button, email: String, password: String) {
 		sender.setLoading(true)
 
-		API.authProvider.request(.register(email: email, password: password), dataType: AuthResult.self) { [unowned self] result in
+		API.authProvider.request(.register(email: email, password: password), dataType: AuthResult.self) { [weak self] result in
+			guard let strongSelf = self else { return }
 			sender.setLoading(false)
 
 			switch result {
@@ -126,7 +128,7 @@ private extension AuthViewController {
 				Alert(serverError: error).show()
 
 			case .success(let authResult):
-				self.saveUserData(sender: sender, authResult: authResult)
+				strongSelf.saveUserData(sender: sender, authResult: authResult)
 			}
 		}
 	}

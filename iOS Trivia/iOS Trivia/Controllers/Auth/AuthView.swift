@@ -98,16 +98,16 @@ extension AuthView: KeyboardHandling {
 		let height = notification?.endFrame.height ?? 250
 		let duration = notification?.animationDuration ?? 0.25
 		actionButton.snp.updateConstraints { $0.bottom.equalToSuperview().inset(height + (preferredPadding * 2)) }
-		UIView.animate(withDuration: duration) { [unowned self] in
-			self.layoutIfNeeded()
+		UIView.animate(withDuration: duration) { [weak self] in
+			self?.layoutIfNeeded()
 		}
 	}
 
 	func keyboardWillHide(_ notification: KeyboardNotification?) {
 		let duration = notification?.animationDuration ?? 0.25
 		actionButton.snp.updateConstraints { $0.bottom.equalToSuperview().inset(preferredPadding * 2) }
-		UIView.animate(withDuration: duration) { [unowned self] in
-			self.layoutIfNeeded()
+		UIView.animate(withDuration: duration) { [weak self] in
+			self?.layoutIfNeeded()
 		}
 	}
 

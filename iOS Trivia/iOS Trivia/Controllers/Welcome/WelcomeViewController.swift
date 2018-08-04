@@ -98,8 +98,9 @@ private extension WelcomeViewController {
 
 		layoutableView.isUserInteractionEnabled = false
 		sender.setLoading(true)
-		API.userProvider.request(UserService.clearPoints(userId: userId, token: token)) { [unowned self] result in
-			self.layoutableView.isUserInteractionEnabled = true
+		API.userProvider.request(UserService.clearPoints(userId: userId, token: token)) { [weak self] result in
+			guard let strongSelf = self else { return }
+			strongSelf.layoutableView.isUserInteractionEnabled = true
 			sender.setLoading(false)
 
 			switch result {
@@ -107,9 +108,8 @@ private extension WelcomeViewController {
 				Alert(serverError: error).show()
 
 			case.success:
-				self.showGameViewController()
+				strongSelf.showGameViewController()
 			}
-
 		}
 	}
 
@@ -126,8 +126,9 @@ private extension WelcomeViewController {
 
 		layoutableView.isUserInteractionEnabled = false
 		sender.setLoading(true)
-		API.authProvider.request(.getIdToken(refreshToken: refreshToken), dataType: TokenResult.self) { [unowned self] result in
-			self.layoutableView.isUserInteractionEnabled = true
+		API.authProvider.request(.getIdToken(refreshToken: refreshToken), dataType: TokenResult.self) { [weak self] result in
+			guard let strongSelf = self else { return }
+			strongSelf.layoutableView.isUserInteractionEnabled = true
 			sender.setLoading(false)
 
 			switch result {
@@ -136,7 +137,7 @@ private extension WelcomeViewController {
 
 			case .success(let tokenResult):
 				AuthCache.saveTokenResult(tokenResult)
-				self.clearUserPoints(sender: sender)
+				strongSelf.clearUserPoints(sender: sender)
 			}
 		}
 	}

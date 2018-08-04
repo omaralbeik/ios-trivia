@@ -88,6 +88,7 @@ extension FlipView {
 		let options: UIViewAnimationOptions = (face == .front) ? .transitionFlipFromBottom : .transitionFlipFromTop
 		UIView.transition(with: self, duration: 0.5, options: options, animations: { [weak self] in
 			guard let strongSelf = self else { return }
+
 			strongSelf.titleLabel.isHidden = (face == .back)
 			strongSelf.confirmButton.isHidden = (face == .front)
 			strongSelf.backgroundColor = (face == .front) ? Color.lightGray : Color.lightYellow
