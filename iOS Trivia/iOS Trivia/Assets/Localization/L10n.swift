@@ -64,6 +64,15 @@ internal enum L10n {
 			}
 		}
 
+		internal enum Messages {
+			/// Right Answer, +%d points!
+			internal static func rightAnswer(_ p1: Int) -> String {
+				return L10n.tr("Localizable", "game.messages.right_answer", p1)
+			}
+			/// Wrong Answer
+			internal static let wrongAnswer = L10n.tr("Localizable", "game.messages.wrong_answer")
+		}
+
 		internal enum QuitAlert {
 			/// Quit Game?
 			internal static let title = L10n.tr("Localizable", "game.quit_alert.title")

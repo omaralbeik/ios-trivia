@@ -24,6 +24,8 @@
 "welcome.view_on_github" = "View on Github";
 
 // Game
+"game.messages.right_answer" = "Right Answer, +%d points!";
+"game.messages.wrong_answer" = "Wrong Answer";
 "game.header.titles.current_question" = "Current Question";
 "game.header.current_question" = "%d/%d";
 "game.header.titles.available_wild_cards" = "Available Wild Cards";

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class GameViewController: LayoutingViewController, Layouting {
+final class GameViewController: LayoutingViewController, Layouting, Confettiable {
 	typealias ViewType = GameView
 
 	weak var timer: Timer?
@@ -68,7 +68,7 @@ final class GameViewController: LayoutingViewController, Layouting {
 // MARK: - AnswersViewDelegate
 extension GameViewController: AnswersViewDelegate {
 
-	func answersView(_ view: AnswersView, sisSelectAnswerAtIndex index: Int) {
+	func answersView(_ view: AnswersView, didSelectAnswerAtIndex index: Int) {
 		guard let question = currentQuestion else { return }
 		submitAnswer(sender: layoutableView, index: index, in: question)
 	}
@@ -150,6 +150,13 @@ private extension GameViewController {
 				Alert(serverError: error).show()
 
 			case .success:
+
+				if question.answers[index].isCorrect {
+					self.showRightAnswerAlert(points: question.points)
+				} else {
+					self.showWrongAnswerAlert()
+				}
+
 				self.fetchNextQuestion(sender: sender)
 			}
 		}
@@ -192,6 +199,15 @@ private extension GameViewController {
 
 // MARK: - Helpers
 private extension GameViewController {
+
+	func showRightAnswerAlert(points: Int) {
+		Alert(body: L10n.Game.Messages.rightAnswer(points), layout: .statusLine, theme: .success).show()
+		showConfetti()
+	}
+
+	func showWrongAnswerAlert() {
+		Alert(body: L10n.Game.Messages.wrongAnswer, layout: .statusLine, theme: .error).show()
+	}
 
 	func generateRandomQuestionIds() -> [Int] {
 		var ids: [Int] = []

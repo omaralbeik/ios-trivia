@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AnswersViewDelegate: AnyObject {
-	func answersView(_ view: AnswersView, sisSelectAnswerAtIndex index: Int)
+	func answersView(_ view: AnswersView, didSelectAnswerAtIndex index: Int)
 }
 
 final class AnswersView: LayoutableView {
@@ -54,7 +54,7 @@ extension AnswersView: FlipViewDelegate {
 	}
 
 	func flipView(_ view: FlipView, didSelectAnswerAtIndex index: Int) {
-		delegate?.answersView(self, sisSelectAnswerAtIndex: index)
+		delegate?.answersView(self, didSelectAnswerAtIndex: index)
 	}
 
 }
