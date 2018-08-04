@@ -127,6 +127,7 @@ private extension GameViewController {
 
 		remainingTime -= 0.001
 	}
+
 }
 
 // MARK: - Networking
@@ -138,13 +139,14 @@ private extension GameViewController {
 
 		let points = question.answers[index].isCorrect ? question.points : 0
 
+		timer?.invalidate()
 		sender.setLoading(true)
 		API.userProvider.request(.submitAnswer(questionId: question.id, score: points, userId: userId, token: token), dataType: [String: Int].self) { [unowned self] result in
+			self.scheduledQuestionTimer()
 			sender.setLoading(false)
 
 			switch result {
 			case .failure(let error):
-				self.dismiss(animated: true)
 				Alert(serverError: error).show()
 
 			case .success:
@@ -159,8 +161,10 @@ private extension GameViewController {
 			return
 		}
 
+		timer?.invalidate()
 		sender.setLoading(true)
 		API.gameProvider.request(.question(id: id), dataType: Question.self) { [unowned self] result in
+			self.scheduledQuestionTimer()
 			sender.setLoading(false)
 
 			switch result {
