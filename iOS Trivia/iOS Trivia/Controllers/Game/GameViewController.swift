@@ -164,7 +164,11 @@ private extension GameViewController {
 
 	func fetchNextQuestion(sender: Loadingable) {
 		guard let id = remainingIds.popLast() else {
-			print("Game ended")
+			let parent = presentingViewController
+			dismiss(animated: true) {
+				parent?.present(UINavigationController(rootViewController: ScoreboardViewController()), animated: true)
+			}
+
 			return
 		}
 
