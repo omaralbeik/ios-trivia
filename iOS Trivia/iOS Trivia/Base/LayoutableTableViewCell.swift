@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 
+/// Use LayoutableTableViewCell as a base class for all UITableViewCell objects.
 class LayoutableTableViewCell: UITableViewCell {
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -26,7 +27,7 @@ class LayoutableTableViewCell: UITableViewCell {
 	}
 
 	func setupViews() {
-		backgroundColor = .white
+		backgroundColor = Color.white
 		selectionStyle = .none
 	}
 

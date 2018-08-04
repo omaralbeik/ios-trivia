@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Token result model
 public struct TokenResult: Codable {
 
 	public var userId: String

@@ -96,8 +96,10 @@ private extension WelcomeViewController {
 			return
 		}
 
+		layoutableView.isUserInteractionEnabled = false
 		sender.setLoading(true)
 		API.userProvider.request(UserService.clearPoints(userId: userId, token: token)) { [unowned self] result in
+			self.layoutableView.isUserInteractionEnabled = true
 			sender.setLoading(false)
 
 			switch result {
@@ -122,8 +124,10 @@ private extension WelcomeViewController {
 			return
 		}
 
+		layoutableView.isUserInteractionEnabled = false
 		sender.setLoading(true)
-		API.authProvider.request(.getIdToken(refreshToken: refreshToken), dataType: TokenResult.self) { result in
+		API.authProvider.request(.getIdToken(refreshToken: refreshToken), dataType: TokenResult.self) { [unowned self] result in
+			self.layoutableView.isUserInteractionEnabled = true
 			sender.setLoading(false)
 
 			switch result {

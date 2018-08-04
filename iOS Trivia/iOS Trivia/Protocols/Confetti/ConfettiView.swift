@@ -10,7 +10,7 @@ import UIKit
 import QuartzCore
 
 /// ConfettiView.
-class ConfettiView: LayoutableView {
+final class ConfettiView: LayoutableView {
 
 	/// Confetti emitter.
 	var emitter = CAEmitterLayer()

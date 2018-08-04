@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// Conform to `Confettiable` protocol to show confetti in a view controller or a view.
+/// Conform to Confettiable protocol to show confetti in a view controller or a view.
 protocol Confettiable: AnyObject {
 
 	/// Show confetti.

@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import NVActivityIndicatorView
 
+/// Conform to Loadingable protocol to show loading in a view.
 protocol Loadingable: AnyObject {
 
 	func setLoading(_ loading: Bool)

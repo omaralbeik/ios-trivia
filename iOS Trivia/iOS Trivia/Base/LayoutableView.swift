@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 
+/// Use LayoutableView as a base class for all UIView objects.
 class LayoutableView: UIView {
 
 	override init(frame: CGRect) {
@@ -26,7 +27,7 @@ class LayoutableView: UIView {
 	}
 
 	func setupViews() {
-		backgroundColor = .white
+		backgroundColor = Color.white
 	}
 
 	func setupLayout() {}

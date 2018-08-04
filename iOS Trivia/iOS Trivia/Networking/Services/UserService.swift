@@ -9,25 +9,31 @@
 import Foundation
 import Moya
 
-public enum UserService {
+/// UserService
+///
+/// - all: get all users.
+/// - saveInfo: save info for a user from an auth result.
+/// - clearPoints: clear points for a user.
+/// - submitAnswer: submit an answer for a question.
+enum UserService {
 	case all
-	case saveEmail(authResult: AuthResult)
+	case saveInfo(authResult: AuthResult)
 	case clearPoints(userId: String, token: String)
 	case submitAnswer(questionId: String, score: Int, userId: String, token: String)
 }
 
 extension UserService: TargetType {
 
-	public var baseURL: URL {
+	var baseURL: URL {
 		return URL(string: "https://ios-trivia.firebaseio.com")!
 	}
 
-	public var path: String {
+	var path: String {
 		switch self {
 		case .all:
 			return "users.json"
 
-		case .saveEmail(let authResult):
+		case .saveInfo(let authResult):
 			return "users/\(authResult.localId).json"
 
 		case .clearPoints(let userId, _):
@@ -38,7 +44,7 @@ extension UserService: TargetType {
 		}
 	}
 
-	public var method: Moya.Method {
+	var method: Moya.Method {
 		switch self {
 		case .all:
 			return .get
@@ -46,34 +52,31 @@ extension UserService: TargetType {
 		case .clearPoints:
 			return .delete
 
-		case .saveEmail,
+		case .saveInfo,
 			 .submitAnswer:
 			return .patch
 		}
 	}
 
-	public var task: Task {
+	var task: Task {
 		switch self {
 		case .all:
 			return .requestPlain
 
-		case .saveEmail(let authResult):
+		case .saveInfo(let authResult):
 			let bodyParameters = ["email": authResult.email, "id": authResult.localId]
-			let urlParameters = ["auth": authResult.idToken]
-			return .requestCompositeParameters(bodyParameters: bodyParameters, bodyEncoding: JSONEncoding.default, urlParameters: urlParameters)
+			return .requestCompositeParameters(bodyParameters: bodyParameters, bodyEncoding: JSONEncoding.default, urlParameters: API.authParameters(for: authResult.idToken))
 
 		case .clearPoints(_, let token):
-			let urlParameters = ["auth": token]
-			return .requestParameters(parameters: urlParameters, encoding: URLEncoding.queryString)
+			return .requestParameters(parameters: API.authParameters(for: token), encoding: URLEncoding.queryString)
 
 		case .submitAnswer(let questionId, let score, _, let token):
 			let bodyParameters = [questionId: score]
-			let urlParameters = ["auth": token]
-			return .requestCompositeParameters(bodyParameters: bodyParameters, bodyEncoding: JSONEncoding.default, urlParameters: urlParameters)
+			return .requestCompositeParameters(bodyParameters: bodyParameters, bodyEncoding: JSONEncoding.default, urlParameters: API.authParameters(for: token))
 		}
 	}
 
-	public var headers: [String: String]? { return nil }
-	public var sampleData: Data { return "".utf8Encoded }
+	var headers: [String: String]? { return nil }
+	var sampleData: Data { return "".utf8Encoded }
 
 }

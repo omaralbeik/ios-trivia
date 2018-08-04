@@ -13,6 +13,9 @@
 "auth.password" = "Password";
 "auth.action.login" = "LOGIN";
 "auth.action.register" = "REGISTER";
+"auth.messages.no_email" = "No email address";
+"auth.messages.invalid_email" = "Invalid email address";
+"auth.messages.no_password" = "No password";
 
 // Welcome
 "welcome.start_game" = "Start Game!";

@@ -8,4 +8,5 @@
 
 import Foundation
 
+/// Users result
 public typealias UsersResult = [String: User]

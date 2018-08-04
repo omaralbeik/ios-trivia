@@ -16,7 +16,7 @@ final class ScoreboardView: LayoutableView, Loadingable {
 		view.separatorInset = .init(top: 0, left: preferredPadding * 4, bottom: 0, right: 0)
 		view.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.reuseIdentifier)
 
-		view.estimatedRowHeight = preferredPadding * 5
+		view.estimatedRowHeight = preferredPadding * 4
 		view.rowHeight = UITableViewAutomaticDimension
 
 		return view

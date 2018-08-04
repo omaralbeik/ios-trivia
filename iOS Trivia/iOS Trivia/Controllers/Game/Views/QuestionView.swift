@@ -14,9 +14,15 @@ final class QuestionView: LayoutableView {
 		let label = UILabel()
 		label.numberOfLines = 0
 		label.textAlignment = .center
-		label.font = .systemFont(ofSize: 25, weight: .regular)
+		label.font = .systemFont(ofSize: 22, weight: .regular)
 		return label
 	}()
+
+	override var backgroundColor: UIColor? {
+		didSet {
+			textLabel.backgroundColor = backgroundColor
+		}
+	}
 
 	override func setupViews() {
 		super.setupViews()
@@ -26,8 +32,8 @@ final class QuestionView: LayoutableView {
 
 	override func setupLayout() {
 		textLabel.snp.makeConstraints { make in
-			make.top.equalToSuperview().inset(preferredPadding * 2)
-			make.leading.bottom.trailing.equalToSuperview().inset(preferredPadding)
+			make.leading.top.trailing.equalToSuperview().inset(preferredPadding)
+			make.bottom.equalToSuperview()
 		}
 	}
 

@@ -16,7 +16,7 @@ final class GameView: LayoutableView, Loadingable {
 
 	private lazy var scrollView: UIScrollView = {
 		let view = UIScrollView()
-		view.backgroundColor = .white
+		view.backgroundColor = Color.white
 		view.showsVerticalScrollIndicator = false
 		return view
 	}()
@@ -46,11 +46,10 @@ final class GameView: LayoutableView, Loadingable {
 		addSubview(timerView)
 		scrollView.addSubview(questionView)
 		scrollView.addSubview(answersView)
+		addSubview(scrollView)
 
 		useWildCardButton.isHidden = true
 		addSubview(useWildCardButton)
-
-		addSubview(scrollView)
 	}
 
 	override func setupLayout() {

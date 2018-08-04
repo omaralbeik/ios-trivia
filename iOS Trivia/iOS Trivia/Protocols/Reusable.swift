@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Conform to Reusable in reusable objects.
 protocol Reusable {
 
 	/// Reuse identifier

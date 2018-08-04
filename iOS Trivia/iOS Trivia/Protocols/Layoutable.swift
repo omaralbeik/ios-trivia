@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Conform to Layoutable protocol in views you want to layout them using SnapKit.
 protocol Layoutable: AnyObject {
 
 	/// Preferred padding for autolayout.

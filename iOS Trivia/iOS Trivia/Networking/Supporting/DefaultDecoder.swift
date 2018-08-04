@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// DefaultDecoder
 final public class DefaultDecoder: JSONDecoder {
 
 	override init() {

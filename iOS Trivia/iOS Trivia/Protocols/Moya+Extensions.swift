@@ -19,7 +19,8 @@ public extension MoyaProvider {
 				completion(.failure(.error(error)))
 			case .success(let response):
 				guard let data = try? response.map(T.self, using: DefaultDecoder()) else {
-					completion(.failure(.serverError(message: L10n.Api.Errors.serverError)))
+					let message = (try? response.map(ErrorResult.self, atKeyPath: "error"))?.message ?? L10n.Api.Errors.serverError
+					completion(.failure(.serverError(message: message)))
 					return
 				}
 

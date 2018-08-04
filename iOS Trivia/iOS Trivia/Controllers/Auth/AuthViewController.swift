@@ -33,10 +33,6 @@ final class AuthViewController: LayoutingViewController, Layouting {
 
 		layoutableView.modeSegmentedControl.addTarget(self, action: #selector(didChangeModeSegmentedControlIndex(_:)), for: .valueChanged)
 		layoutableView.actionButton.addTarget(self, action: #selector(didTapActionButton(_:)), for: .touchUpInside)
-
-		//FIXME: remove test user
-		layoutableView.emailTextField.text = "omaralbeik@gmail.com"
-		layoutableView.passwordTextField.text = "testpass"
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -80,12 +76,15 @@ private extension AuthViewController {
 
 	@objc
 	func didTapActionButton(_ button: Button) {
-		guard let email = layoutableView.emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
+		let (message, textField) = layoutableView.isValid
+		if let errorMessage = message {
+			Alert(body: errorMessage, layout: .statusLine, theme: .error).show()
+			textField?.becomeFirstResponder()
 			return
 		}
-		guard let password = layoutableView.passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
-			return
-		}
+
+		let email = layoutableView.emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+		let password = layoutableView.passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
 
 		switch mode {
 		case .login:
@@ -136,7 +135,7 @@ private extension AuthViewController {
 		AuthCache.saveAuthResult(authResult)
 		sender.setLoading(true)
 
-		API.userProvider.request(.saveEmail(authResult: authResult), dataType: [String: String].self) { result in
+		API.userProvider.request(.saveInfo(authResult: authResult), dataType: [String: String].self) { result in
 			sender.setLoading(false)
 
 			switch result {

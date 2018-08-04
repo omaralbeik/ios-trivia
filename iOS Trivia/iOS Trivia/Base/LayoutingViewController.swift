@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// User LayoutingViewController as a base class for all UIViewController objects.
 class LayoutingViewController: UIViewController {
 
 	override func viewDidLoad() {

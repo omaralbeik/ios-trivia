@@ -9,14 +9,18 @@
 import Foundation
 import Moya
 
-public struct API {
+final class API {
 
 	private init() {}
 
-	public static let authProvider = MoyaProvider<AuthService>()
-	public static let gameProvider = MoyaProvider<GameService>()
-	public static let userProvider = MoyaProvider<UserService>()
+	static let authProvider = MoyaProvider<AuthService>()
+	static let gameProvider = MoyaProvider<GameService>()
+	static let userProvider = MoyaProvider<UserService>()
 
-	public static let apiKey = ["key": "AIzaSyB2DanM4vlas94SmDFQlTKmFfI1GKmQAQg"]
+	static let apiKey = ["key": "AIzaSyB2DanM4vlas94SmDFQlTKmFfI1GKmQAQg"]
+
+	static func authParameters(for idToken: String) -> [String: String] {
+		return ["auth": idToken]
+	}
 
 }

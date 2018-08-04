@@ -14,7 +14,7 @@ import Moya
 /// - register: register new user.
 /// - login: login as existing user.
 /// - getIdToken: get an id token from a refresh tokem
-public enum AuthService {
+enum AuthService {
 	case register(email: String, password: String)
 	case login(email: String, password: String)
 	case getIdToken(refreshToken: String)
@@ -23,7 +23,7 @@ public enum AuthService {
 // MARK: - TargetType
 extension AuthService: TargetType {
 
-	public var baseURL: URL {
+	var baseURL: URL {
 		switch self {
 		case .register,
 			 .login:
@@ -34,7 +34,7 @@ extension AuthService: TargetType {
 
 	}
 
-	public var path: String {
+	var path: String {
 		switch self {
 		case .register:
 			return "signupNewUser"
@@ -45,7 +45,7 @@ extension AuthService: TargetType {
 		}
 	}
 
-	public var method: Moya.Method {
+	var method: Moya.Method {
 		switch self {
 		case .register,
 			 .login,
@@ -54,7 +54,7 @@ extension AuthService: TargetType {
 		}
 	}
 
-	public var task: Task {
+	var task: Task {
 		switch self {
 		case .register(let email, let password),
 			 .login(let email, let password):
@@ -74,7 +74,7 @@ extension AuthService: TargetType {
 		}
 	}
 
-	public var headers: [String: String]? { return nil }
-	public var sampleData: Data { return "".utf8Encoded }
+	var headers: [String: String]? { return nil }
+	var sampleData: Data { return "".utf8Encoded }
 
 }

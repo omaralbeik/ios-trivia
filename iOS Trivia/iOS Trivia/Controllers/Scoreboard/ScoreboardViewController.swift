@@ -51,7 +51,8 @@ extension ScoreboardViewController: UITableViewDataSource, UITableViewDelegate {
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.reuseIdentifier) as! UserTableViewCell
-		cell.configure(for: users[indexPath.row], index: indexPath.row)
+		let row = indexPath.row
+		cell.configure(for: users[row], index: row)
 		return cell
 	}
 

@@ -33,6 +33,8 @@ extension Button: Stylable {
 
 	func setStyle(backgroundColor: UIColor?, tintColor: UIColor?) {
 		self.backgroundColor = backgroundColor
+		imageView?.backgroundColor = backgroundColor
+		titleLabel?.backgroundColor = backgroundColor
 		titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
 		if let color = tintColor {
 			self.tintColor = color

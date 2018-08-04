@@ -42,6 +42,13 @@ final class UserTableViewCell: LayoutableTableViewCell {
 		return view
 	}()
 
+	override var backgroundColor: UIColor? {
+		didSet {
+			emailLabel.backgroundColor = backgroundColor
+			pointsLabel.backgroundColor = backgroundColor
+		}
+	}
+
 	override func setupViews() {
 		super.setupViews()
 

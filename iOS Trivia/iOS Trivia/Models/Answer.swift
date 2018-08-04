@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Answer model
 public struct Answer: Codable {
 
 	public var text: String

@@ -13,7 +13,7 @@ final class AuthView: LayoutableView {
 	lazy var logoImageView: UIImageView = {
 		let view = UIImageView(image: #imageLiteral(resourceName: "logo"))
 		view.contentMode = .scaleAspectFit
-		view.tintColor = .white
+		view.tintColor = Color.white
 		return view
 	}()
 
@@ -61,7 +61,6 @@ final class AuthView: LayoutableView {
 	}
 
 	override func setupLayout() {
-
 		logoImageView.snp.makeConstraints { make in
 			make.width.lessThanOrEqualToSuperview().multipliedBy(0.75)
 			make.centerX.equalToSuperview()
@@ -136,18 +135,24 @@ extension AuthView {
 
 }
 
-// MARK: - Helpers
-private extension AuthView {
+// MARK: - Validation
+extension AuthView {
 
-	func setTextFieldStyle(_ textField: UITextField) -> UITextField {
-		textField.textAlignment = .center
-		textField.autocapitalizationType = .none
-		textField.autocorrectionType = .no
-		textField.backgroundColor = Color.darkOrange
-		textField.textColor = Color.white
-		textField.tintColor = Color.white.withAlphaComponent(0.75)
-		textField.layer.cornerRadius = preferredPadding / 3
-		return textField
+	/// Check if form is valid.
+	var isValid: (message: String?, field: UITextField?) {
+		guard let possibleEmail = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !possibleEmail.isEmpty else {
+			return (L10n.Auth.Messages.noEmail, emailTextField)
+		}
+
+		guard possibleEmail.isValidEmail else {
+			return (L10n.Auth.Messages.invalidEmail, emailTextField)
+		}
+
+		guard let possiblePassword = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !possiblePassword.isEmpty else {
+			return (L10n.Auth.Messages.noPassword, passwordTextField)
+		}
+
+		return (nil, nil)
 	}
 
 }

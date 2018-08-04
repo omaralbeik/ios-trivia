@@ -29,6 +29,15 @@ internal enum L10n {
 			internal static let register = L10n.tr("Localizable", "auth.action.register")
 		}
 
+		internal enum Messages {
+			/// Invalid email address
+			internal static let invalidEmail = L10n.tr("Localizable", "auth.messages.invalid_email")
+			/// No email address
+			internal static let noEmail = L10n.tr("Localizable", "auth.messages.no_email")
+			/// No password
+			internal static let noPassword = L10n.tr("Localizable", "auth.messages.no_password")
+		}
+
 		internal enum Mode {
 			/// Login
 			internal static let login = L10n.tr("Localizable", "auth.mode.login")

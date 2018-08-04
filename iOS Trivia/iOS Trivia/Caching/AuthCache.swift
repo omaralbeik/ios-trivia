@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Auth cache
 final class AuthCache {
 
 	private init() {}

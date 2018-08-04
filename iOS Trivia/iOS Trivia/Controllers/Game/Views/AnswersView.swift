@@ -41,9 +41,9 @@ final class AnswersView: LayoutableView {
 extension AnswersView: FlipViewDelegate {
 
 	func selectAnswer(atIndex index: Int) {
-		let flipViews = stackView.arrangedSubviews.compactMap { $0 as? FlipView }
-		flipViews[index].flip(to: .back)
-		flipViews[index].confirmButton.sendActions(for: .touchUpInside)
+		let flipView = stackView.arrangedSubviews[index] as! FlipView
+		flipView.flip(to: .back)
+		flipView.confirmButton.sendActions(for: .touchUpInside)
 	}
 
 	func flipView(_ view: FlipView, willFlipToFace face: FlipView.Face) {

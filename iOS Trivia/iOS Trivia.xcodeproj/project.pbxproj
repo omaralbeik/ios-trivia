@@ -14,6 +14,7 @@
 		0789B20F2115730700D03226 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789B20E2115730700D03226 /* TimerView.swift */; };
 		0789B2112115C06600D03226 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789B2102115C06600D03226 /* ConfettiView.swift */; };
 		0789B2132115C19600D03226 /* Confettiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789B2122115C19600D03226 /* Confettiable.swift */; };
+		0789B2172115E9FB00D03226 /* ErrorResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789B2162115E9FB00D03226 /* ErrorResult.swift */; };
 		078BEB7F2114FA5B008C6722 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078BEB7E2114FA5B008C6722 /* Reusable.swift */; };
 		078BEB812114FB0D008C6722 /* LayoutableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078BEB802114FB0D008C6722 /* LayoutableTableViewCell.swift */; };
 		078BEB832114FB63008C6722 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078BEB822114FB63008C6722 /* UserTableViewCell.swift */; };
@@ -72,6 +73,7 @@
 		0789B20E2115730700D03226 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		0789B2102115C06600D03226 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		0789B2122115C19600D03226 /* Confettiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confettiable.swift; sourceTree = "<group>"; };
+		0789B2162115E9FB00D03226 /* ErrorResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResult.swift; sourceTree = "<group>"; };
 		078BEB7E2114FA5B008C6722 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		078BEB802114FB0D008C6722 /* LayoutableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutableTableViewCell.swift; sourceTree = "<group>"; };
 		078BEB822114FB63008C6722 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
@@ -162,12 +164,31 @@
 				079C9CF42114303100D47060 /* Caching */,
 				079B793F2112DECA006BF34F /* Models */,
 				07A1A8FB21120F5700471B9A /* Base */,
+				07A1A8E22112060F00471B9A /* Protocols */,
 				07A1A8F921120F3800471B9A /* Controllers */,
 				07A1A8EF21120D6800471B9A /* Assets */,
 				07A1A90A21123FB400471B9A /* Extensions */,
-				07A1A8E22112060F00471B9A /* Protocols */,
 			);
 			path = "iOS Trivia";
+			sourceTree = "<group>";
+		};
+		0789B2142115E29000D03226 /* Confetti */ = {
+			isa = PBXGroup;
+			children = (
+				0789B2122115C19600D03226 /* Confettiable.swift */,
+				0789B2102115C06600D03226 /* ConfettiView.swift */,
+			);
+			path = Confetti;
+			sourceTree = "<group>";
+		};
+		0789B2152115E29F00D03226 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				07C169052114B7B2004F697C /* KeyboardHandling.swift */,
+				07C169072114B7CF004F697C /* KeyboardNotification.swift */,
+				07C169092114B7F2004F697C /* KeyboardObserving.swift */,
+			);
+			path = Keyboard;
 			sourceTree = "<group>";
 		};
 		079B793F2112DECA006BF34F /* Models */ = {
@@ -175,6 +196,7 @@
 			children = (
 				079B79402112DED4006BF34F /* Question.swift */,
 				07C4BBD221136D3500A61284 /* AuthResult.swift */,
+				0789B2162115E9FB00D03226 /* ErrorResult.swift */,
 				079C9CF721143AEC00D47060 /* TokenResult.swift */,
 				07C168F621148515004F697C /* User.swift */,
 				07C168F82114861F004F697C /* UsersResult.swift */,
@@ -187,10 +209,10 @@
 			isa = PBXGroup;
 			children = (
 				079B79492112E6CD006BF34F /* GameHeaderView.swift */,
-				079B79442112DF96006BF34F /* QuestionView.swift */,
-				079B79462112E080006BF34F /* AnswersView.swift */,
-				07A1A90D2112438300471B9A /* FlipView.swift */,
 				0789B20E2115730700D03226 /* TimerView.swift */,
+				079B79442112DF96006BF34F /* QuestionView.swift */,
+				07A1A90D2112438300471B9A /* FlipView.swift */,
+				079B79462112E080006BF34F /* AnswersView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,15 +229,12 @@
 			isa = PBXGroup;
 			children = (
 				07A1A8EC211208CD00471B9A /* Layoutable.swift */,
-				0789B2122115C19600D03226 /* Confettiable.swift */,
-				0789B2102115C06600D03226 /* ConfettiView.swift */,
 				078BEB7E2114FA5B008C6722 /* Reusable.swift */,
 				07EB7E3E2114DF6C00A11965 /* Loadingable.swift */,
 				07C1690F2114D083004F697C /* Stylable.swift */,
 				07A1A8E52112068100471B9A /* Layouting.swift */,
-				07C169052114B7B2004F697C /* KeyboardHandling.swift */,
-				07C169072114B7CF004F697C /* KeyboardNotification.swift */,
-				07C169092114B7F2004F697C /* KeyboardObserving.swift */,
+				0789B2142115E29000D03226 /* Confetti */,
+				0789B2152115E29F00D03226 /* Keyboard */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -252,9 +271,9 @@
 		07A1A8F921120F3800471B9A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				07C168FA2114886F004F697C /* Scoreboard */,
 				07C4BBD82113712600A61284 /* Auth */,
 				07A1A8E72112074900471B9A /* Welcome */,
+				07C168FA2114886F004F697C /* Scoreboard */,
 				07A1A8FC2112101A00471B9A /* Game */,
 			);
 			path = Controllers;
@@ -502,6 +521,7 @@
 				07C168EF2114713D004F697C /* UserService.swift in Sources */,
 				07C4BBDC2113714D00A61284 /* AuthViewController.swift in Sources */,
 				079B79412112DED4006BF34F /* Question.swift in Sources */,
+				0789B2172115E9FB00D03226 /* ErrorResult.swift in Sources */,
 				07A1A902211210AB00471B9A /* GameViewController.swift in Sources */,
 				07C168F721148515004F697C /* User.swift in Sources */,
 				074404112111E4B40022440D /* AppDelegate.swift in Sources */,

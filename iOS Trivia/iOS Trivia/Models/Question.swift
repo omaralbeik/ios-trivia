@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Question model.
 public struct Question: Codable {
 
 	public var id: String

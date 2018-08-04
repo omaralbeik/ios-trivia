@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// User model
 public struct User: Codable {
 
 	public var id: String

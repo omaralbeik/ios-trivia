@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// Conform to Layouting protocol from a view controller to use pcView property.
+/// Conform to Layouting protocol from a view controller to use layoutableView property.
 protocol Layouting: AnyObject {
 
 	/// Type of LayoutableView.

@@ -8,6 +8,10 @@
 
 import Foundation
 
+/// API Errors.
+///
+/// - error: a known error.
+/// - serverError: server error.
 public enum APIError {
 	case error(Error)
 	case serverError(message: String)

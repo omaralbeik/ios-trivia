@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Auth result model
 public struct AuthResult: Codable {
 
 	public var email: String
