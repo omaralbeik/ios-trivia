@@ -11,6 +11,7 @@
 		074404182111E4B40022440D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 074404172111E4B40022440D /* Assets.xcassets */; };
 		0744041B2111E4B40022440D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 074404192111E4B40022440D /* LaunchScreen.storyboard */; };
 		074404232111E4E90022440D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 074404222111E4E90022440D /* GoogleService-Info.plist */; };
+		0789B20F2115730700D03226 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0789B20E2115730700D03226 /* TimerView.swift */; };
 		078BEB7F2114FA5B008C6722 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078BEB7E2114FA5B008C6722 /* Reusable.swift */; };
 		078BEB812114FB0D008C6722 /* LayoutableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078BEB802114FB0D008C6722 /* LayoutableTableViewCell.swift */; };
 		078BEB832114FB63008C6722 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078BEB822114FB63008C6722 /* UserTableViewCell.swift */; };
@@ -66,6 +67,7 @@
 		0744041A2111E4B40022440D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0744041C2111E4B40022440D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		074404222111E4E90022440D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0789B20E2115730700D03226 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		078BEB7E2114FA5B008C6722 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		078BEB802114FB0D008C6722 /* LayoutableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutableTableViewCell.swift; sourceTree = "<group>"; };
 		078BEB822114FB63008C6722 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				079B79442112DF96006BF34F /* QuestionView.swift */,
 				079B79462112E080006BF34F /* AnswersView.swift */,
 				07A1A90D2112438300471B9A /* FlipView.swift */,
+				0789B20E2115730700D03226 /* TimerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				079B794A2112E6CD006BF34F /* GameHeaderView.swift in Sources */,
 				07C4BBD321136D3500A61284 /* AuthResult.swift in Sources */,
 				07C4BBDA2113713B00A61284 /* AuthView.swift in Sources */,
+				0789B20F2115730700D03226 /* TimerView.swift in Sources */,
 				07A1A90E2112438300471B9A /* FlipView.swift in Sources */,
 				07A1A8F721120E4A00471B9A /* L10n.swift in Sources */,
 				07C4BBE22113922300A61284 /* DefaultDecoder.swift in Sources */,

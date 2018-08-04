@@ -32,6 +32,7 @@
 "game.quit_alert.title" = "Quit Game?";
 "game.quit_alert.options.quit" = "Quit";
 "game.quit_alert.options.stay" = "Stay";
+"game.use_wild_card" = "Use Wild Card";
 
 // Scoreboard
 "scoreboard.title" = "Scoreboard";

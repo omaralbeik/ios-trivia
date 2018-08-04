@@ -38,6 +38,8 @@ internal enum L10n {
 	}
 
 	internal enum Game {
+		/// Use Wild Card
+		internal static let useWildCard = L10n.tr("Localizable", "game.use_wild_card")
 
 		internal enum Answer {
 			/// Select

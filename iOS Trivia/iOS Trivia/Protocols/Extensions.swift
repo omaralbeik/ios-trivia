@@ -88,6 +88,19 @@ public extension Int {
 
 }
 
+extension TimeInterval {
+
+	func timeString(units: NSCalendar.Unit = [.second], style: DateComponentsFormatter.UnitsStyle = .abbreviated) -> String {
+		let formatter = DateComponentsFormatter()
+		formatter.allowedUnits = units
+		formatter.unitsStyle = style
+		formatter.maximumUnitCount = 2
+		formatter.zeroFormattingBehavior = .pad
+
+		return formatter.string(from: self) ?? ""
+	}
+}
+
 internal extension String {
 
 	internal var utf8Encoded: Data {

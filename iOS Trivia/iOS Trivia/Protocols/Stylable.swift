@@ -6,8 +6,8 @@
 //  Copyright © 2018 Omar Albeik. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol Stylable: AnyObject {
-	func setStyle()
+	func setStyle(backgroundColor: UIColor?, tintColor: UIColor?)
 }

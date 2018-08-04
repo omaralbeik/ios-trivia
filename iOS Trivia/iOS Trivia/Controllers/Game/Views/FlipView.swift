@@ -67,7 +67,8 @@ final class FlipView: LayoutableView {
 		}
 
 		confirmButton.snp.makeConstraints { make in
-			make.top.bottom.equalToSuperview().inset(preferredPadding / 2)
+			make.top.bottom.equalToSuperview()
+			make.height.greaterThanOrEqualTo(preferredPadding * 2.75)
 			make.leading.trailing.equalToSuperview().inset(preferredPadding * 2)
 		}
 	}
@@ -85,13 +86,15 @@ extension FlipView {
 		isUserInteractionEnabled = false
 
 		let options: UIViewAnimationOptions = (face == .front) ? .transitionFlipFromBottom : .transitionFlipFromTop
-		UIView.transition(with: self, duration: 0.5, options: options, animations: { [unowned self] in
-			self.titleLabel.isHidden = (face == .back)
-			self.confirmButton.isHidden = (face == .front)
-			self.backgroundColor = (face == .front) ? Color.lightGray : Color.lightYellow
-			}, completion: { [unowned self] _ in
-				self.isUserInteractionEnabled = true
-				self.delegate?.flipView(self, didFlipToFace: face)
+		UIView.transition(with: self, duration: 0.5, options: options, animations: { [weak self] in
+			guard let strongSelf = self else { return }
+			strongSelf.titleLabel.isHidden = (face == .back)
+			strongSelf.confirmButton.isHidden = (face == .front)
+			strongSelf.backgroundColor = (face == .front) ? Color.lightGray : Color.lightYellow
+			}, completion: { [weak self] _ in
+				guard let strongSelf = self else { return }
+				strongSelf.isUserInteractionEnabled = true
+				strongSelf.delegate?.flipView(strongSelf, didFlipToFace: face)
 		})
 	}
 

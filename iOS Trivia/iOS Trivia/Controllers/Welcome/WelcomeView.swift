@@ -49,8 +49,8 @@ final class WelcomeView: LayoutableView {
 	}
 
 	override func setupLayout() {
-		startButton.snp.makeConstraints { $0.height.equalTo(preferredPadding * 2) }
-		scoreboardButton.snp.makeConstraints { $0.height.equalTo(preferredPadding * 2) }
+		startButton.snp.makeConstraints { $0.height.equalTo(preferredPadding * 2.2) }
+		scoreboardButton.snp.makeConstraints { $0.height.equalTo(preferredPadding * 2.2) }
 
 		buttonsStackView.snp.makeConstraints { make in
 			make.centerY.equalToSuperview()

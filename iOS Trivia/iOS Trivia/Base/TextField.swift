@@ -15,10 +15,13 @@ final class TextField: UITextField {
 		case password
 	}
 
-	convenience init(placeholder: String?, text: String? = nil, textType: TextType) {
+	convenience init(
+		placeholder: String?, text: String? = nil, textType: TextType,
+		backgroundColor: UIColor = Color.darkOrange, tintColor: UIColor = Color.white) {
+
 		self.init()
 
-		setStyle()
+		setStyle(backgroundColor: backgroundColor, tintColor: tintColor)
 		self.placeholder = placeholder
 		self.text = text
 
@@ -52,14 +55,17 @@ extension TextField: Layoutable {
 // MARK: - Stylable
 extension TextField: Stylable {
 
-	func setStyle() {
+	func setStyle(backgroundColor: UIColor?, tintColor: UIColor?) {
 		textAlignment = .center
 		autocapitalizationType = .none
 		autocorrectionType = .no
-		backgroundColor = Color.darkOrange
-		textColor = Color.white
-		tintColor = Color.white.withAlphaComponent(0.75)
+		self.backgroundColor = backgroundColor
+		if let color = tintColor {
+			self.tintColor = color.withAlphaComponent(0.75)
+			textColor = color
+		}
 		layer.cornerRadius = preferredPadding
+
 	}
 
 }

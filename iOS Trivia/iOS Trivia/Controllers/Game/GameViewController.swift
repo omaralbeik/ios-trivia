@@ -11,12 +11,27 @@ import UIKit
 final class GameViewController: LayoutingViewController, Layouting {
 	typealias ViewType = GameView
 
-	var numberOfQuestions = 10
-	var remainingIds: [Int] = []
-	var currentQuestion: Question?
+	weak var timer: Timer?
+	var remainingTime: TimeInterval = 0 {
+		didSet {
+			layoutableView.timerView.configure(reminingTime: remainingTime, maxTime: currentQuestion.duration)
+		}
+	}
 
-	var usedWildCards = 0
-	var allowedWildCards = 3
+	let numberOfQuestions = 10
+	var remainingIds: [Int] = []
+	var currentQuestion: Question! {
+		didSet {
+			remainingTime = currentQuestion.duration
+		}
+	}
+
+	var usedWildCards = 0 {
+		didSet {
+			layoutableView.useWildCardButton.isEnabled = (usedWildCards < numberOfWildCards)
+		}
+	}
+	let numberOfWildCards = 3
 
 	override func loadView() {
 		view = ViewType()
@@ -27,6 +42,8 @@ final class GameViewController: LayoutingViewController, Layouting {
 
 		remainingIds = generateRandomQuestionIds()
 		layoutableView.answersView.delegate = self
+
+		layoutableView.useWildCardButton.addTarget(self, action: #selector(didTapUseWildCardButton), for: .touchUpInside)
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -35,12 +52,17 @@ final class GameViewController: LayoutingViewController, Layouting {
 		fetchNextQuestion(sender: layoutableView)
 	}
 
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+
+		timer?.invalidate()
+	}
+
 	override func setNavigationItem() {
 		navigationController?.navigationBar.setColors(background: Color.lightOrange, text: Color.white)
 		navigationItem.replaceTitle(with: #imageLiteral(resourceName: "nav_logo"))
 		navigationItem.leftBarButtonItem = .init(image: #imageLiteral(resourceName: "nav_icon_close"), style: .plain, target: self, action: #selector(didTapCancelBarButtonItem))
 	}
-
 }
 
 // MARK: - AnswersViewDelegate
@@ -78,6 +100,33 @@ private extension GameViewController {
 		present(alert, animated: true)
 	}
 
+	@objc
+	func didTapUseWildCardButton() {
+		guard let correctAnswerIndex = currentQuestion.answers.index(where: { $0.isCorrect }) else { return }
+		layoutableView.answersView.selectAnswer(atIndex: correctAnswerIndex)
+		usedWildCards += 1
+	}
+
+}
+
+// MARK: - Timer Helpers
+private extension GameViewController {
+
+	func scheduledQuestionTimer() {
+		timer?.invalidate()
+		timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(updateTime(_:)), userInfo: nil, repeats: true)
+	}
+
+	@objc
+	func updateTime(_ timer: Timer) {
+		guard remainingTime > 0 else {
+			timer.invalidate()
+			fetchNextQuestion(sender: layoutableView)
+			return
+		}
+
+		remainingTime -= 0.001
+	}
 }
 
 // MARK: - Networking
@@ -95,6 +144,7 @@ private extension GameViewController {
 
 			switch result {
 			case .failure(let error):
+				self.dismiss(animated: true)
 				Alert(serverError: error).show()
 
 			case .success:
@@ -115,6 +165,7 @@ private extension GameViewController {
 
 			switch result {
 			case .failure(let error):
+				self.dismiss(animated: true)
 				Alert(serverError: error).show()
 
 			case .success(let question):
@@ -127,7 +178,10 @@ private extension GameViewController {
 		currentQuestion = question
 		layoutableView.configure(for: question)
 		let answeredCount = numberOfQuestions - remainingIds.count
-		layoutableView.configureHeader(question: answeredCount, maxQuestions: numberOfQuestions, wildCard: usedWildCards, maxWildCards: allowedWildCards)
+		let wildCardsCount = numberOfWildCards - usedWildCards
+		layoutableView.configureHeader(question: answeredCount, maxQuestions: numberOfQuestions, wildCard: wildCardsCount, maxWildCards: numberOfWildCards)
+		scheduledQuestionTimer()
+		layoutableView.useWildCardButton.isHidden = false
 	}
 
 }

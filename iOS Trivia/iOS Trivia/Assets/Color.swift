@@ -32,6 +32,9 @@ final class Color: UIColor {
 		return Color(hex: 0xAAB2BD)
 	}
 
+	static let lightGreen = Color(hex: 0x48CFAE)
+	static let darkGreen = Color(hex: 0x37BB9B)
+
 	static let lightOrange = Color(hex: 0xFB6E52)
 	static let darkOrange = Color(hex: 0xE9573E)
 

@@ -21,6 +21,10 @@ final class GameView: LayoutableView, Loadingable {
 		return view
 	}()
 
+	lazy var timerView: TimerView = {
+		return TimerView()
+	}()
+
 	private lazy var questionView: QuestionView = {
 		return QuestionView()
 	}()
@@ -29,13 +33,23 @@ final class GameView: LayoutableView, Loadingable {
 		return AnswersView()
 	}()
 
+	lazy var useWildCardButton: Button = {
+		let button = Button(title: L10n.Game.useWildCard, backgroundColor: Color.darkGreen, tintColor: Color.white)
+		button.layer.cornerRadius = 0
+		return button
+	}()
+
 	override func setupViews() {
 		super.setupViews()
 
 		addSubview(headerView)
-
+		addSubview(timerView)
 		scrollView.addSubview(questionView)
 		scrollView.addSubview(answersView)
+
+		useWildCardButton.isHidden = true
+		addSubview(useWildCardButton)
+
 		addSubview(scrollView)
 	}
 
@@ -49,9 +63,14 @@ final class GameView: LayoutableView, Loadingable {
 			make.leading.trailing.equalToSuperview()
 		}
 
-		scrollView.snp.makeConstraints { make in
+		timerView.snp.makeConstraints { make in
 			make.top.equalTo(headerView.snp.bottom)
-			make.leading.trailing.bottom.equalToSuperview()
+			make.leading.trailing.equalToSuperview()
+		}
+
+		scrollView.snp.makeConstraints { make in
+			make.top.equalTo(timerView.snp.bottom)
+			make.leading.trailing.equalToSuperview()
 		}
 
 		questionView.snp.makeConstraints { make in
@@ -60,7 +79,13 @@ final class GameView: LayoutableView, Loadingable {
 
 		answersView.snp.makeConstraints { make in
 			make.top.equalTo(questionView.snp.bottom)
-			make.width.centerX.bottom.equalToSuperview()
+			make.width.bottom.centerX.equalToSuperview()
+		}
+
+		useWildCardButton.snp.makeConstraints { make in
+			make.top.equalTo(scrollView.snp.bottom)
+			make.leading.bottom.trailing.equalToSuperview()
+			make.height.equalTo(preferredPadding * 3)
 		}
 	}
 
